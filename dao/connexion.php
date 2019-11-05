@@ -1,4 +1,5 @@
 <?php
+
 /** Classe ConnexionBdd */
 
 class ConnexionBdd

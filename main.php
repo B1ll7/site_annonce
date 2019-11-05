@@ -1,6 +1,9 @@
 <?php
     require './dao/requirefile.php';
-    $ban = new MySqlDao();
-    $ban -> insert('rocky', 'j\'ai changé', 'Rocky', 'viensjetenmetune@danslagueule.fr', 'JAckson, RugisLand');
-    echo "[la suite après insertion]";
+    $ban = new MySQLRubriqueDAO();
+    $r = new Rubrique("textile");
+    $r -> setID(3);
+    //$ban -> insert ($r)
+    // echo "[la suite après insertion] \n";
+    $ban -> delete($r);
     $ban -> getAll();

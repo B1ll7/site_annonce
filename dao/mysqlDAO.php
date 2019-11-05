@@ -1,4 +1,5 @@
 <?php
+    
     class MySqlDao
     {
         private $cnx;
@@ -33,7 +34,7 @@
                 foreach ($data as $j) {
                     echo($j."\n");
                 }
-            } catch (\PDPExecption $e) {
+            } catch (\PDPException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
             }

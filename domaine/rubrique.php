@@ -13,12 +13,11 @@
         /**
          * constructeur de la classe Rubrique
          *
-         * @param [type] $id unique permettant de le retrouver dans le tableau
          * @param [type] $libelle unique permettant de donné un nom à la rubrique
          */
-        public function __construct($ID='',$LIBELLE='')
+        public function __construct($LIBELLE='')
         {
-            $this -> ID = $ID;
+            $this -> ID = -1;
             $this -> LIBELLE = $LIBELLE;
         }
         /**
