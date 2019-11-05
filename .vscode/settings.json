@@ -8,6 +8,15 @@
             "port": 3306,
             "server": "localhost",
             "username": "root"
+        },
+        {
+            "askForPassword": true,
+            "database": "mlr1",
+            "dialect": "MySQL",
+            "name": "new",
+            "port": 3306,
+            "server": "localhost",
+            "username": "root"
         }
     ]
 }
