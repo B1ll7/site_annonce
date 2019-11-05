@@ -4,7 +4,7 @@
             "askForPassword": true,
             "database": "mlr1",
             "dialect": "MySQL",
-            "name": "New Connection",
+            "name": "new",
             "port": 3306,
             "server": "localhost",
             "username": "root"

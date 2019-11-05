@@ -9,7 +9,7 @@
         private $MAIL;
         private $ADRESSE;
 
-        public function __construct($ID=0,$MDP='', $NOM='', $PRENOM='', $MAIL='', $ADRESSE='')
+        public function __construct($ID=-1,$MDP='', $NOM='', $PRENOM='', $MAIL='', $ADRESSE='')
         {
             $this -> ID = $ID;
             $this -> MDP = $MDP;
