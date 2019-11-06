@@ -25,7 +25,7 @@
 
         public function getByRubrique(\Rubrique $ru)
         {
-            
+            $requete = 'CALL get_rubrique';
         }
         
         public function getByUtilisateur(\Utilisateur $u)
