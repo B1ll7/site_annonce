@@ -8,14 +8,14 @@
         private $MAIL;
         private $ADRESSE;
 
-        public function __construct($ID=-1,$MDP='', $NOM='', $PRENOM='', $MAIL='', $ADRESSE='')
+        public function __construct($NOM, $MDP)
         {
-            $this -> ID = $ID;
+            $this -> ID = -1;
             $this -> MDP = $MDP;
             $this -> NOM = $NOM;
-            $this -> PRENOM = $PRENOM;
-            $this -> MAIL = $MAIL;
-            $this -> ADRESSE = $ADRESSE;
+            $this -> PRENOM;
+            $this -> MAIL;
+            $this -> ADRESSE;
         }
 
         public function __toString()

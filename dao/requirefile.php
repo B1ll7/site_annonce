@@ -5,4 +5,5 @@
     require 'mysqlutilisateurdao.php';
     require 'domaine/utilisateur.php';
     require 'domaine/rubrique.php';
-    
+    require 'function/function.php';
+    require 'domaine/annonce.php';

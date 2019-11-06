@@ -24,23 +24,25 @@
                 $res -> execute();
                 $this -> cnx -> commit();
             } catch (\PDOException $e) {
-                //echo "la rubrique n'a pas pu être rentrée \n";
-                throw new \PDOException("la rubrique n'a pas pu être rentrée \n", (int)$e->getCode()."\n", null);
-                //echo($e->getMessage()."\n");
-                //echo((int)$e->getCode()."\n");
+                echo "la rubrique n'a pas pu être rentrée \n";
+                //throw new \PDOException("la rubrique n'a pas pu être rentrée \n", (int)$e->getCode()."\n", null);
+                echo($e->getMessage()."\n");
+                echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();
             }
         }
         public function delete(Rubrique $r)
         {
             $value = $r -> getId();
-            $sql = "CALL deleteRubrique(:id);";
+            $sql = "CALL deleteRubrique(:value);";
+            toUpdateToDeleteRubrique($value, $sql);
             try 
             {
                 $this -> cnx -> beginTransaction();
                 $res = $this -> cnx -> prepare($sql);
                 $res -> bindParam(':value', $value, PDO::PARAM_STR);
-                $res -> execute();
+                $rowcount = $res -> execute();
+                echo "{$rowcount} lignes supprimés. \n";
                 $this -> cnx -> commit();
             }catch(\PDOException $e)
             {
@@ -49,7 +51,22 @@
         }
         public function update(Rubrique $r)
         {
-
+            $value = [$r -> getId(), $r-> getLibelle()];
+            $sql = "CALL updateRubrique(:ID,:LIBELLE);";
+            //toUpdateToDeleteRubrique($value, $sql);
+            try 
+            {
+                $this -> cnx -> beginTransaction();
+                $res = $this -> cnx -> prepare($sql);
+                $res -> bindParam(':ID', $value[0], PDO::PARAM_STR);
+                $res -> bindParam(':LIBELLE', $value[1], PDO::PARAM_STR);
+                $rowcount = $res -> execute();
+                echo "{$rowcount} lignes modifiés. \n";
+                $this -> cnx -> commit();
+            }catch(\PDOException $e)
+            {
+                throw new \PDOException("erreur, la rubrique n'a pas pu être supprimer", (int)$e->getCode()."\n", null);
+            }
         }
         public function getAll()
         {
