@@ -35,7 +35,6 @@
         {
             $value = $r -> getId();
             $sql = "CALL deleteRubrique(:value);";
-            toUpdateToDeleteRubrique($value, $sql);
             try 
             {
                 $this -> cnx -> beginTransaction();

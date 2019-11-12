@@ -1,6 +1,7 @@
 <?php
     class Annonce
     {
+        private $ID;
         private $ID_EST_DEPOSEE;
         private $ID_APPARTIENT; 
         private $ENTETE;
@@ -9,7 +10,8 @@
         private $DATE_VALIDITE;
 
         public function __construct($ID_APPARTIENT, $ENTETE, $CORPS)
-        {
+        { 
+            $this -> ID = -1;
             $this -> ID_EST_DEPOSEE;
             $this -> ID_APPARTIENt; 
             $this -> ENTETE;
@@ -24,6 +26,11 @@
             . $this -> getCORPS() . ',' . $this -> getDATE_DEPOT() . ',' . $this -> getDATE_VALIDITE() .  ']';
         }
         
+        public function getID()
+        {
+                return $this -> ID; 
+        }
+
         /**
          * Get the value of ID_EST_DEPOSEE
          */ 
@@ -92,6 +99,10 @@
                 return $this->CORPS;
         }
 
+        public function setID($id)
+        {
+                £T
+        }
         /**
          * Set the value of CORPS
          *
