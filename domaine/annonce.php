@@ -101,7 +101,7 @@
 
         public function setID($id)
         {
-                £T
+                $this -> ID = $id;
         }
         /**
          * Set the value of CORPS
