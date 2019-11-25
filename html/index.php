@@ -7,7 +7,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="container-fluid m-0 p-0">
+      <div class="container-fluid m-0 p-0">
             <div class="header d-inline-flex m-3">
                 <h1 class="">MonSiteD'annonce</h1>
                 <div class="d-inline-flex">

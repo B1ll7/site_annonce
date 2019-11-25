@@ -1,7 +1,8 @@
 <?php
     require './dao/requirefile.php';
 
-    //$ban = new MySQLRubriqueDAO();
+    //$ban = new MySqlDao();
+    $ban = new MySQLRubriqueDAO();
     //$ban = new MySqlUtilisateur();
     //$r = new Rubrique("Paix");
     //$r = new Utilisateur('damas','roger');
@@ -13,4 +14,4 @@
     //$ban -> identifier($r);
     //$ban -> delete($r);
     //$ban -> update($r);
-    //$ban -> getAll();
+    $ban -> getAll();
