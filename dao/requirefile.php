@@ -1,9 +1,13 @@
 <?php
-    require 'connexion.php';
-    require 'mysqlDAO.php';
-    require 'mysqlrubriquedao.php';
-    require 'mysqlutilisateurdao.php';
-    require 'domaine/utilisateur.php';
-    require 'domaine/rubrique.php';
-    require 'function/function.php';
-    require 'domaine/annonce.php';
+    require realpath(__DIR__."./connexion.php");
+    require realpath(__DIR__.'./mysqlDAO.php');
+    require realpath(__DIR__.'./mysqlrubriquedao.php');
+    require realpath(__DIR__.'./mysqlutilisateurdao.php');
+    require realpath(__DIR__.'./../domaine/utilisateur.php');
+    require realpath(__DIR__.'./../domaine/rubrique.php');
+    require realpath(__DIR__.'./../function/function.php');
+    require realpath(__DIR__.'./../domaine/annonce.php');
+    require realpath(__DIR__."./../views/showAccueil.php");
+    require realpath(__DIR__.'./../views/vueListerRubriques.php');
+    require realpath(__DIR__.'./../views/vueAjouterRubrique.php');
+    

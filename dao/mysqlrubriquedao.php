@@ -74,9 +74,10 @@
                 $stmt = $this -> cnx -> query($sql);
                 $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Rubrique');
                 $data = $stmt->fetchAll();
-                foreach ($data as $j) {
-                    echo($j."\n");
-                }
+                // foreach ($data as $j) {
+                //     echo($j."\n");
+                // }
+                return $data;
             } catch (\PDPException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
