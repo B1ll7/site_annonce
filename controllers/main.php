@@ -11,6 +11,9 @@
             case 'ajouterRubrique':
                 ajouterRubrique();
             break;
+            case 'identifierUtilisateur':
+                identifierUtilisateur();
+            break;
             default:
                 echo "Error";
                 break;
@@ -18,9 +21,19 @@
     }
     else if (isset($_POST['action']))
     {
-        ajouterRubrique();
+        switch($_POST['action'])
+        {
+            case "ajouterRubrique":
+                ajouterRubrique();
+            break;
+            case 'identifierUtilisateur':
+                identifierUtilisateur();
+            break;
+            default:
+                echo 'ERRO 404 PAS TROUVER LA PAGE DU POST';
+            break;
+        }
     }
-
     else
     {
         $ban = new VueAccueil;
@@ -50,5 +63,35 @@
         {
             $ru = new VueAjouterRubrique();
             $ru -> show();
+        }
+    }
+
+    function identifierUtilisateur()
+    {
+        if(isset($_POST) && $_POST != null)
+        {
+            $mail = $_POST['mail'];
+            $pass = $_POST['pass'];
+            $u = new Utilisateur($mail, $pass);
+            $u1 = new MySqlUtilisateurDAO;
+            $value = $u1 -> identifier($u);
+            var_dump($value);
+            if(isset($value) && $value != null)
+            {
+                $url = $_SERVER['PHP_SELF'];
+                $_SESSION['name'] = $mail;
+                echo 'Bienvenu ' . $_SESSION['name'].'<br>';
+                echo "<a href='".$url."'> Revenir à l'accueil</a>";
+            }
+            else 
+            {
+                echo 'Connexion impossible, identifiant inconnu <br>';
+                echo "<a href='".$url."'> Revenir à l'accueil</a>";
+            }
+        }
+        else 
+        {
+            $u = new VueIdentifierUtilisateur();
+            $u -> show();
         }
     }

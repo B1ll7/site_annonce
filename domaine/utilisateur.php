@@ -8,13 +8,13 @@
         private $MAIL;
         private $ADRESSE;
 
-        public function __construct($NOM, $MDP)
+        public function __construct($MAIL, $MDP)
         {
             $this -> ID = -1;
             $this -> MDP = $MDP;
-            $this -> NOM = $NOM;
+            $this -> NOM;
             $this -> PRENOM;
-            $this -> MAIL;
+            $this -> MAIL = $MAIL;
             $this -> ADRESSE;
         }
 

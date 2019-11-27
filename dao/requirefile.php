@@ -10,4 +10,5 @@
     require realpath(__DIR__."./../views/showAccueil.php");
     require realpath(__DIR__.'./../views/vueListerRubriques.php');
     require realpath(__DIR__.'./../views/vueAjouterRubrique.php');
+    require realpath(__DIR__.'./../views/vueIdentifierUtilisateur.php');
     
