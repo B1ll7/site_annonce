@@ -1,6 +1,6 @@
 <?php
-    require "../dao/requirefile.php";
-        
+    require realpath(__DIR__.'./../dao/requirefile.php');
+
     if(isset($_GET['action']))
     {    
         switch($_GET['action'])
@@ -13,6 +13,9 @@
             break;
             case 'identifierUtilisateur':
                 identifierUtilisateur();
+            break;
+            case 'creerUtilisateur':
+                creerUtilisateur();
             break;
             default:
                 echo "Error";
@@ -28,6 +31,9 @@
             break;
             case 'identifierUtilisateur':
                 identifierUtilisateur();
+            break;
+            case 'creerUtilisateur':
+                creerUtilisateur();
             break;
             default:
                 echo 'ERRO 404 PAS TROUVER LA PAGE DU POST';
@@ -68,6 +74,7 @@
 
     function identifierUtilisateur()
     {
+        $url = $_SERVER['PHP_SELF'];
         if(isset($_POST) && $_POST != null)
         {
             $mail = $_POST['mail'];
@@ -75,7 +82,6 @@
             $u = new Utilisateur($mail, $pass);
             $u1 = new MySqlUtilisateurDAO;
             $value = $u1 -> identifier($u);
-            var_dump($value);
             if(isset($value) && $value != null)
             {
                 $url = $_SERVER['PHP_SELF'];
@@ -92,6 +98,31 @@
         else 
         {
             $u = new VueIdentifierUtilisateur();
+            $u -> show();
+        }
+    }
+
+    function creerUtilisateur()
+    {
+        if(isset($_POST['action']) && $_POST['action'] != null)
+        {
+            $mail = $_POST['mail'];
+            $pass = $_POST['mdp'];
+            $u = new Utilisateur($mail,$pass);
+            $u1 = new MySqlUtilisateurDAO();
+            $value = $u1 -> identifier($u);
+            if($value != null)
+            {
+                echo "utilisateur déjà enregistrer";
+            }
+            else 
+            {
+                $u1 -> insert($u);
+                echo "<p>Vous avez été correctement enregistré</p><br>";
+            }
+        }else
+        {
+            $u = new VueCreerUtilisateur();
             $u -> show();
         }
     }

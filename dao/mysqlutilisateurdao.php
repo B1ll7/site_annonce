@@ -30,19 +30,25 @@
         public function identifier(Utilisateur $u)
         {
             $var = sha1($u -> getMDP());
-            $value = array($var, $u -> getNOM());
+            $value = array($var, $u -> getMAIL());
             $requete = 'CALL identifiedUser(?,?);';
             try
             {
                 $this -> cnx -> beginTransaction();
                 $res = $this -> cnx -> prepare($requete);
+                $res->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Utilisateur', [null,null]);
                 $res -> execute($value);
+                $data = $res -> fetchAll();
                 $this -> cnx -> commit();
-                return true;
+                if ($data != false) {
+                    return $data;
+                }else 
+                {
+                    return null;
+                }
             }
             catch(\PDOException $e)
             {
-                echo "Erreur: connexion impossible vérifier l'identifiant ou le mot de passe enregistrer \n";
                 echo ($e -> getMessage() . "\n");
                 echo((int)$e -> getMessage()."\n");
                 $this -> cnx -> rollBack();
