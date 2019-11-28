@@ -14,12 +14,11 @@
             $value = array($var, $u -> getNOM(), $u -> getPRENOM(), $u -> getMAIL(), $u -> getADRESSE());
             $requete = 'CALL insert_into_user(?,?,?,?,?);';
             try {
-                $this -> cnx -> beginTransaction();
                 $res = $this -> cnx -> prepare($requete);
                 $res -> execute($value);
                 $id = $this-> cnx -> lastInsertId();
                 $this -> cnx -> commit();
-                return new Utilisateur($id, $u->getNOM());
+                return 0;
             } catch (PDPExecption $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
@@ -30,8 +29,8 @@
         public function identifier(Utilisateur $u)
         {
             $var = sha1($u -> getMDP());
-            $value = array($var, $u -> getMAIL());
-            $requete = 'CALL identifiedUser(?,?);';
+            $value = array($var, $u -> getMAIL(), $u -> getNOM());
+            $requete = 'CALL identifiedUser(?,?,?);';
             try
             {
                 $this -> cnx -> beginTransaction();
@@ -46,11 +45,13 @@
                 {
                     return null;
                 }
+
             }
             catch(\PDOException $e)
             {
                 echo ($e -> getMessage() . "\n");
                 echo((int)$e -> getMessage()."\n");
+                throw new \PDOException($e->getMessage(), (int)$e -> getCode());
                 $this -> cnx -> rollBack();
             }
         }

@@ -150,7 +150,7 @@
          */
         public function setADRESSE($ADRESSE)
         {
-            $this -> $ADRESSE = ADRESSE;
+            $this -> ADRESSE = $ADRESSE;
         }
 
     }

@@ -85,8 +85,8 @@
             if(isset($value) && $value != null)
             {
                 $url = $_SERVER['PHP_SELF'];
-                $_SESSION['name'] = $mail;
-                echo 'Bienvenu ' . $_SESSION['name'].'<br>';
+                $_SESSION['name'] = $value[0]->getNOM();
+                echo 'Bienvenu ' .$_SESSION['name'].'<br>';
                 echo "<a href='".$url."'> Revenir à l'accueil</a>";
             }
             else 
@@ -104,21 +104,24 @@
 
     function creerUtilisateur()
     {
+        $url = $_SERVER['PHP_SELF'];
         if(isset($_POST['action']) && $_POST['action'] != null)
         {
+            $nom = $_POST['nom'];
             $mail = $_POST['mail'];
             $pass = $_POST['mdp'];
             $u = new Utilisateur($mail,$pass);
+            $u -> setNOM($nom);
             $u1 = new MySqlUtilisateurDAO();
             $value = $u1 -> identifier($u);
             if($value != null)
             {
-                echo "utilisateur déjà enregistrer";
+                echo "<p>utilisateur déjà enregistré</p><br><a href='".$url."'>Acceuil</a>";
             }
             else 
             {
                 $u1 -> insert($u);
-                echo "<p>Vous avez été correctement enregistré</p><br>";
+                echo "<p>Vous avez été correctement enregistré</p><br><a href='".$url."'>Acceuil</a>";
             }
         }else
         {
