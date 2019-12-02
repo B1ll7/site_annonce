@@ -7,6 +7,7 @@
         //'cache' => '/path/to/compilation_cache',
     ]);
 
+    session_start();
     if(isset($_GET['action']))
     {    
         switch($_GET['action'])
@@ -48,8 +49,9 @@
     }
     else
     {
-        $ban = new VueAccueil;
-        $ban -> show();
+        // $ban = new VueAccueil;
+        // $ban -> show();
+        echo $twig->render('showAccueil.php.twig',[]);
     }
 
     function afficherRubriques()
