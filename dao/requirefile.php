@@ -7,9 +7,9 @@
     require realpath(__DIR__.'./../domaine/rubrique.php');
     require realpath(__DIR__.'./../function/function.php');
     require realpath(__DIR__.'./../domaine/annonce.php');
-    require realpath(__DIR__."./../views/showAccueil.php");
-    require realpath(__DIR__.'./../views/vueListerRubriques.php');
-    require realpath(__DIR__.'./../views/vueAjouterRubrique.php');
-    require realpath(__DIR__.'./../views/vueIdentifierUtilisateur.php');
-    require realpath(__DIR__.'./../views/vueCreerUtilisateur.php');
+    //require realpath(__DIR__."./../views/showAccueil.php")
+    // require realpath(__DIR__.'./../views/vueListerRubriques.php');
+    // require realpath(__DIR__.'./../views/vueAjouterRubrique.php');
+    // require realpath(__DIR__.'./../views/vueIdentifierUtilisateur.php');
+    // require realpath(__DIR__.'./../views/vueCreerUtilisateur.php');
     

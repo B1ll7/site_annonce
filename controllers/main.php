@@ -1,13 +1,9 @@
 <?php
-    require realpath(__DIR__.'./../dao/requirefile.php');
-
+    require realpath(__DIR__.'./../dao/requirefile.php'); 
     require_once '../vendor/autoload.php';
-    $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'./../views');
-    $twig = new \Twig\Environment($loader, [
-        //'cache' => '/path/to/compilation_cache',
-    ]);
 
     session_start();
+
     if(isset($_GET['action']))
     {    
         switch($_GET['action'])
@@ -48,19 +44,23 @@
         }
     }
     else
-    {
-        // $ban = new VueAccueil;
-        // $ban -> show();
-        echo $twig->render('showAccueil.php.twig',[]);
+    {        
+        $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+        $twig = new \Twig\Environment($loader, [
+            'cache' => 'false',
+        ]);
+        echo $twig->render("showAcceuil.html.twig");
     }
 
     function afficherRubriques()
     {
+        $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+        $twig = new \Twig\Environment($loader, [
+            'cache' => 'false',
+        ]);
         $ru = new MySQLRubriqueDAO();
-        $nRu = new VueListerRubriques();
         $tableau = $ru -> getAll();
-        $nRu -> setContenu($tableau);
-        $nRu -> show();
+        echo $twig->render("vueListerRubrique.html.twig",["$tableau" => Array()]);
     }
 
     function ajouterRubrique()
