@@ -1,6 +1,12 @@
 <?php
     require realpath(__DIR__.'./../dao/requirefile.php');
 
+    require_once '../vendor/autoload.php';
+    $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'./../views');
+    $twig = new \Twig\Environment($loader, [
+        //'cache' => '/path/to/compilation_cache',
+    ]);
+
     if(isset($_GET['action']))
     {    
         switch($_GET['action'])
