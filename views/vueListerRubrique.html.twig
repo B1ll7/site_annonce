@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    {% for rub in rubs %}
+        <ul>
+            <li>rub.ID</li>
+            <li>rub.LIBELLE</li>
+        </ul>
+    {% endfor %}
+{% endblock %}

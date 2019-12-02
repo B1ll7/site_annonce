@@ -49,7 +49,7 @@
         $twig = new \Twig\Environment($loader, [
             'cache' => 'false',
         ]);
-        echo $twig->render("showAcceuil.html.twig");
+        echo $twig->render("showAcceuil.html.twig", ["url" => $_SERVER['PHP_SELF']]);
     }
 
     function afficherRubriques()
@@ -60,7 +60,7 @@
         ]);
         $ru = new MySQLRubriqueDAO();
         $tableau = $ru -> getAll();
-        echo $twig->render("vueListerRubrique.html.twig",["$tableau" => Array()]);
+        echo $twig->render("vueListerRubrique.html.twig",["rubs" => "$tableau", "session" => "$_SESSION", "url" => $_SERVER['PHP_SELF']]);
     }
 
     function ajouterRubrique()
