@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    {% if error == null %}
+        <form action='{{ url }}' method='POST'>
+            <h2>Connectez-Vous</h2>
+            <p><label for='identifiant'>IDENTIFIANT  : </label><input type='text' name='mail' id='name' class='name' placeholder='mail ou identifiant' required></p>
+            <p><label for='pass'>MOT DE PASSE : </label><input type='text' name='pass' id='pass' class='pass' required></p>
+            <input type='hidden' name='action' id='action' class='action' value='identifierUtilisateur'>
+            <button type='submit'>Connecter</button>
+        </form>
+    {% endif %}
+    {% if error != null %}
+        <form action='{{ url }}' method='POST'>
+            <div class='alert-danger'>{{ error }}</div>
+            <h2>Connectez-Vous</h2>
+            <p><label for='identifiant'>IDENTIFIANT  : </label><input type='text' name='mail' id='name' class='name' placeholder='mail ou identifiant' required></p>
+            <p><label for='pass'>MOT DE PASSE : </label><input type='text' name='pass' id='pass' class='pass' required></p>
+            <input type='hidden' name='action' id='action' class='action' value='identifierUtilisateur'>
+            <button type='submit'>Connecter</button>
+        </form>
+    {% endif %}
+{% endblock %}

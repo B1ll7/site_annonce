@@ -29,7 +29,7 @@
         public function identifier(Utilisateur $u)
         {
             $var = sha1($u -> getMDP());
-            $value = array($var, $u -> getMAIL(), $u -> getNOM());
+            $value = array($var, $u -> getNOM(),$u -> getMAIL());
             $requete = 'CALL identifiedUser(?,?,?);';
             try
             {

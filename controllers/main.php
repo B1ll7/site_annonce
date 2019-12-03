@@ -2,10 +2,18 @@
     require realpath(__DIR__.'./../dao/requirefile.php'); 
     require_once '../vendor/autoload.php';
 
+    /**
+     * @session_start debute la session de l'utilisateur
+     */
     session_start();
 
+    /**
+     * condition qui verifie si l'utilisateur et a déjà lancé une action ou pas 
+     */
     if(isset($_GET['action']))
-    {    
+    {    /**
+          *  Si une action a été lancer verifie la valeur de l'action et debut les fonctions par rapport à celle-ci 
+          */
         switch($_GET['action'])
         {
             case "afficherRubriques":
@@ -27,6 +35,9 @@
     }
     else if (isset($_POST['action']))
     {
+        /**
+         * La valeur de l'action vient du formulaire, lance donc la fonction par rapport à cette action  
+         */
         switch($_POST['action'])
         {
             case "ajouterRubrique":
@@ -38,21 +49,35 @@
             case 'creerUtilisateur':
                 creerUtilisateur();
             break;
+            case 'logout':
+                session_destroy();
+            break;
             default:
                 echo 'ERROR 404 PAS TROUVER LA PAGE DU POST';
             break;
         }
     }
     else
-    {        
+    {
+        /**
+         * Renvoie à la page d'accueil quand aucun lien n'a encore été cliqué
+         */
         $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
         $twig = new \Twig\Environment($loader, [
             // 'cache' => 'false',
         ]);
         $url = $_SERVER['PHP_SELF'];
-        echo $twig->render("showAcceuil.html.twig", ['session' => $_SESSION, 'url' => $url, 'title' => 'marc']);
+        $_SESSION['name'] = null;
+        $name = $_SESSION['name'];
+        $err_message = null;
+        echo $twig->render("showAcceuil.html.twig", ['name' => $name, 'url' => $url, 'error' => $err_message]);
     }
 
+    /**
+     * Affche le template risquer rubrique
+     *
+     * @return void
+     */
     function afficherRubriques()
     {
         $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
@@ -65,6 +90,11 @@
         echo $twig->render('vueListerRubrique.html.twig', ['rubs' => $tableau, 'url' => $url]);
     }
 
+    /**
+     * Affiche le template d'ajouter rubrique la requete par formulaire n'a pas encore été faite sinon insert le formulaire dans la bdd et affiche la liste des formulaires
+     *
+     * @return void
+     */
     function ajouterRubrique()
     {
         if(isset($_POST) && $_POST != null)
@@ -86,6 +116,11 @@
         }
     }
 
+    /**
+     * Affiche le template d'identifier si la requete par formulaire n'a pas encore été faite sinon lance la requete sql et en fonction enregistre le nom dans le session_names
+     *
+     * @return void
+     */
     function identifierUtilisateur()
     {
         $url = $_SERVER['PHP_SELF'];
@@ -98,24 +133,42 @@
             $value = $u1 -> identifier($u);
             if(isset($value) && $value != null)
             {
-                $url = $_SERVER['PHP_SELF'];
+                $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+                $twig = new \Twig\Environment($loader, [
+                    //'cache' => 'false',
+                ]);
                 $_SESSION['name'] = $value[0]->getNOM();
-                echo 'Bienvenu ' .$_SESSION['name'].'<br>';
-                echo "<a href='".$url."'> Revenir à l'accueil</a>";
+                $name = $_SESSION['name'];
+                $err_message = null; 
+                echo $twig->render('showAcceuil.html.twig', ['name' => $name, 'url' => $url, 'error' => $err_message]);
             }
             else 
             {
-                echo 'Connexion impossible, identifiant inconnu <br>';
-                echo "<a href='".$url."'> Revenir à l'accueil</a>";
+                $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+                $twig = new \Twig\Environment($loader, [
+                    //'cache' => 'false',
+                ]);
+
+                $err_message = 'connexion impossible, vérifiez vos identifiants'; 
+                echo $twig->render('vueIdentifierUtilisateur.html.twig', ['url' => $url, 'error' => $err_message]);
             }
         }
         else 
         {
-            $u = new VueIdentifierUtilisateur();
-            $u -> show();
+            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+            $twig = new \Twig\Environment($loader, [
+                //'cache' => 'false',
+            ]);
+            $err_message = null; 
+            echo $twig->render('vueIdentifierUtilisateur.html.twig', ['url' => $url, 'error' => $err_message]);
         }
     }
 
+    /**
+     * Affiche la page de créer utilisateur si la requete par formulaire n'a pas encore été faite créer un utilisateur en fonction des données et l'enregistre dans la bdd
+     *
+     * @return void
+     */
     function creerUtilisateur()
     {
         $url = $_SERVER['PHP_SELF'];
