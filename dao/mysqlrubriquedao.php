@@ -69,14 +69,14 @@
         }
         public function getAll()
         {
-            $sql = 'CALL print_Rubrique();';
+            $requete = 'CALL print_Rubrique();';
             try {
-                $stmt = $this -> cnx -> query($sql);
+                $this -> cnx -> beginTransaction();
+                $stmt = $this -> cnx -> prepare($requete);
                 $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Rubrique');
+                $stmt -> execute();
                 $data = $stmt->fetchAll();
-                // foreach ($data as $j) {
-                //     echo($j."\n");
-                // }
+                $this -> cnx -> commit();
                 return $data;
             } catch (\PDPException $e) {
                 echo($e->getMessage()."\n");

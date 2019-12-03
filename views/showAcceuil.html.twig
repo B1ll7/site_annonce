@@ -1,18 +1,34 @@
   {% extends "base.html.twig" %}
   {% block content %}
-    {% if name  == null and error == null %}
+    {% if name  == null and error == null and droits == null %}
       <h3>Bonjour</h3>
       <ul>
         <li><a href="{{ url }}?action=afficherRubriques">afficherRubriques</a></li>
-        <li><a href='{{ url }}?action=ajouterRubrique'>ajouterRubrique</a></li>
+        <li><a href="{{ url }}?action=afficherAnnonces">afficherAnnonces</a></li>
         <li><a href='{{ url }}?action=identifierUtilisateur'>identifierUtilisateur</a></li>
         <li><a href='{{ url }}?action=creerUtilisateur'>creerUtilisateur</a></li>
       </ul>
     {% endif %}
-    {% if name != null %}
+    {% if name  != null and error == null and droits == 'admin' %}
+      <h3>Bonjour {{ name }}</h3>
+      <ul>
+        <li><a href="{{ url }}?action=afficherRubriques">afficherRubriques</a></li>
+        <li><a href='{{ url }}?action=ajouterRubrique'>ajouterRubrique</a></li>
+        <li><a href="{{ url }}?action=afficherAnnonces">afficherAnnonces</a></li>
+        {# <li><a href='{{ url }}?action=supprimerRubrique'>supprimerRubrique</a></li> #}
+        {# <li><a href='{{ url }}?action=ajouterAnnonce'>ajouterAnnonce</a></li> #}
+        {# <li><a href='{{ url }}?action=supprimerAnnonce'>supprimerAnnonce</a></li> #}
+        <li><a href='{{ url }}?action=creerUtilisateur'>creerUtilisateur</a></li>
+        <li><a href='{{ url }}?action=logout'>Se deconnecter</a></li>
+      </ul>
+    {% endif %}
+
+    {% if name != null and droits != 'admin' and droits == null %}
       <h3>Bonjour {{ name }}</h3>
         <ul>
           <li><a href='{{ url }}?action=afficherRubriques'>afficherRubriques</a></li>
+          <li><a href="{{ url }}?action=afficherAnnonces">afficherAnnonces</a></li>
+          {# <li><a href='{{ url }}?action=ajouterAnnonce'>ajouterAnnonce</a></li> #}
           <li><a href='{{ url }}?action=logout'>Se deconnecter</a></li>
         </ul>
     {% endif %}

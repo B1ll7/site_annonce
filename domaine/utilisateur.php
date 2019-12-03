@@ -7,15 +7,17 @@
         private $PRENOM;
         private $MAIL;
         private $ADRESSE;
+        private $DROITS;
 
-        public function __construct($MAIL, $MDP)
+        public function __construct()
         {
             $this -> ID = -1;
-            $this -> MDP = $MDP;
+            $this -> MDP;
             $this -> NOM;
             $this -> PRENOM;
-            $this -> MAIL = $MAIL;
+            $this -> MAIL;
             $this -> ADRESSE;
+            $this -> DROITS;
         }
 
         public function __toString()
@@ -151,6 +153,24 @@
         public function setADRESSE($ADRESSE)
         {
             $this -> ADRESSE = $ADRESSE;
+        }
+        /**
+         * Getter for$DROITS
+         *
+         * @return [type]
+         */
+        public function getDROITS()
+        {
+            return $this -> DROITS;
+        }
+
+        /**
+         * Setter for$DROITS
+         * @var [type]$DROITS
+         */
+        public function setDROITS($DROITS)
+        {
+            $this -> DROITS = $DROITS;
         }
 
     }

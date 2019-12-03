@@ -1,5 +1,6 @@
 <?php
-    class AnnonceDAO implements AnnonceDAO
+    require_once realpath(__DIR__.'/../annonceinterface.php');
+    class MySqlAnnonceDAO implements AnnonceDAO
     {
         private $cnx;
 
@@ -81,14 +82,21 @@
         
         public function getByUtilisateur(\Utilisateur $u)
         {
+            /**
+             *  $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Rubrique');
+             *   $data = $stmt->fetchAll();
+             */
             $requete = 'CALL get_by_utilisateur(:value)';
             $value = $u -> getID();
             try {
                 $this -> cnx -> beginTransaction();
-                $res = $this -> cnx -> prepare($requete);
-                $res -> bindParam(':value', $value, PDO::PARAM_STR);
-                $res -> execute();
+                $stmt = $this -> cnx -> prepare($requete);
+                $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Annonce');
+                $stmt -> bindParam(':value', $value, PDO::PARAM_STR);
+                $stmt -> execute();
+                $data = $stmt -> fetchAll();
                 $this -> cnx -> commit();
+                var_dump($data);
             } catch (\PDPException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
