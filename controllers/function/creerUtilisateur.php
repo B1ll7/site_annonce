@@ -17,7 +17,7 @@
             $u -> setMAIL($mail);
             $u -> setMDP($pass);
             $u1 = new MySqlUtilisateurDAO();
-            $value = $u1 -> identifier($u);
+            $value = $u1 -> insert($u);
             if($value != null)
             {
                 echo "<p>$nom est déjà enregistré</p><br><a href='$url'>Acceuil</a>";
@@ -31,7 +31,7 @@
         }
         else
         {
-            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
             $twig = new \Twig\Environment($loader, [
                 // 'cache' => false;
             ]);

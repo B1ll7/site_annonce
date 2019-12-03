@@ -13,7 +13,7 @@
         { 
             $this -> ID = -1;
             $this -> ID_EST_DEPOSEE;
-            $this -> ID_APPARTIENt; 
+            $this -> ID_APPARTIENT; 
             $this -> ENTETE;
             $this -> CORPS;
             $this -> DATE_DEPOT = date('l j M Y');
@@ -64,7 +64,7 @@
          *
          * @return  self
          */ 
-        public function setID_APPARTIENt($ID_APPARTIENT)
+        public function setID_APPARTIENT($ID_APPARTIENT)
         {
                 $this->ID_APPARTIENt = $ID_APPARTIENT;
 

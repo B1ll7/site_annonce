@@ -1,5 +1,6 @@
 <?php
     require realpath(__DIR__.'./../dao/requirefile.php'); 
+    require realpath(__DIR__.'./function/requirefile.php'); 
     require_once '../vendor/autoload.php';
 
     /**

@@ -25,7 +25,7 @@
             $value = $u1 -> identifier($u);
             if(isset($value) && $value != null)
             {
-                $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+                $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
                 $twig = new \Twig\Environment($loader, [
                     //'cache' => 'false',
                 ]);
@@ -38,7 +38,7 @@
             }
             else 
             {
-                $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+                $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
                 $twig = new \Twig\Environment($loader, [
                     //'cache' => 'false',
                 ]);
@@ -49,7 +49,7 @@
         }
         else 
         {
-            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
             $twig = new \Twig\Environment($loader, [
                 //'cache' => 'false',
             ]);

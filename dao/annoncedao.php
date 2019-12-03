@@ -68,11 +68,14 @@
             $requete = 'CALL get_by_rubrique(:value)';
             $value = $ru -> getId();
             try {
+                $requete = 'CALL print_Rubrique();';
                 $this -> cnx -> beginTransaction();
-                $res = $this -> cnx -> prepare($requete);
-                $res -> bindParam(':value', $value, PDO::PARAM_STR);
-                $res -> execute();
-                $this -> cnx -> commit();
+                $stmt = $this -> cnx -> prepare($requete);
+                $stmt -> bindParam(':value', $value, PDO::PARAM_STR);
+                $stmt -> execute();
+                $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Annonce', [null,null,null]);
+                $data = $stmt->fetchAll();
+                return $data;
             } catch (\PDPException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
@@ -82,21 +85,16 @@
         
         public function getByUtilisateur(\Utilisateur $u)
         {
-            /**
-             *  $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Rubrique');
-             *   $data = $stmt->fetchAll();
-             */
             $requete = 'CALL get_by_utilisateur(:value)';
             $value = $u -> getID();
             try {
                 $this -> cnx -> beginTransaction();
                 $stmt = $this -> cnx -> prepare($requete);
-                $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Annonce');
                 $stmt -> bindParam(':value', $value, PDO::PARAM_STR);
                 $stmt -> execute();
-                $data = $stmt -> fetchAll();
-                $this -> cnx -> commit();
-                var_dump($data);
+                $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Annonce', [null,null,null]);
+                $data = $stmt->fetchAll();
+                return $data;
             } catch (\PDPException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");

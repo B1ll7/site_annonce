@@ -71,17 +71,15 @@
         {
             $requete = 'CALL print_Rubrique();';
             try {
-                $this -> cnx -> beginTransaction();
-                $stmt = $this -> cnx -> prepare($requete);
+                $stmt = $this -> cnx -> query($requete);
                 $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Rubrique');
-                $stmt -> execute();
                 $data = $stmt->fetchAll();
-                $this -> cnx -> commit();
                 return $data;
             } catch (\PDPException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();
             }
+
         }
     }

@@ -11,14 +11,11 @@
         public function insert(Utilisateur $u)
         {
             $var = sha1($u->getMDP());
-            $value = array($var, $u -> getNOM(), $u -> getPRENOM(), $u -> getMAIL(), $u -> getADRESSE());
-            $requete = 'CALL insert_into_user(?,?,?,?,?);';
+            $value = array($var, $u -> getNOM(), $u -> getPRENOM(), $u -> getMAIL(), $u -> getADRESSE(), $u -> getDROITS());
+            $requete = 'CALL insert_into_user(?,?,?,?,?,?);';
             try {
-                $res = $this -> cnx -> prepare($requete);
-                $res -> execute($value);
-                $id = $this-> cnx -> lastInsertId();
-                $this -> cnx -> commit();
-                return 0;
+                $stmt = $this -> cnx -> prepare($requete);
+                $stmt -> execute($value);
             } catch (PDPExecption $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");

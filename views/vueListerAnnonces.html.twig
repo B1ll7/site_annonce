@@ -1,7 +1,43 @@
 {% extends "base.html.twig" %}
-
 {% block content %}
-    {% for element in a %}
-        
-    {% endfor %}
+    {{ name }}
+    {{ droits }}
+    {% if name == null %}
+        <form action='{{url}}'>
+            <h3>Bonjour</h3>
+            <select>
+                <option>Selectionner une Rubrique</option>
+                {% for rub in rubs %}
+                    <option value='{{rub.ID}}'>{{rub.LIBELLE}}</option>
+                {% endfor %}
+            </select>
+            <button type='submit'>Valider</button>
+        </form>
+    {% endif %}
+    {% if name != null and droits != 'admin' %}
+        <form action='{{url}}'>
+            <h3>Bonjour {{name}}</h3>
+            <select>
+                <option>Selectionner une Rubrique</option>
+                {% for rub in rubs %}
+                    <option value='{{rub.ID}}'>{{rub.LIBELLE}}</option>
+                {% endfor %}
+            </select>
+            <button type='submit'>Valider</button>
+        </form>
+    {% endif %}
+    {% if name != null and droits == 'admin' %}
+        <form action='{{url}}'>
+            <h3>Bonjour {{name}}</h3>
+            <h5>Vous êtes en mode superutilisateur attention aux modifications ! </h5>
+            <select>
+                <option>Selectionner une Rubrique</option>
+                {% for rub in rubs %}
+                    <option value='{{rub.ID}}'>{{rub.LIBELLE}}</option>
+                {% endfor %}
+            </select>
+            <button type='submit'>Valider</button>
+        </form>
+    {% endif %}
+    <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}

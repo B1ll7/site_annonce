@@ -16,7 +16,7 @@
         }
         else
         {
-            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
             $twig = new \Twig\Environment($loader, [
                 // 'cache' => false
             ]);
