@@ -39,7 +39,7 @@
                 creerUtilisateur();
             break;
             default:
-                echo 'ERRO 404 PAS TROUVER LA PAGE DU POST';
+                echo 'ERROR 404 PAS TROUVER LA PAGE DU POST';
             break;
         }
     }
@@ -47,20 +47,22 @@
     {        
         $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
         $twig = new \Twig\Environment($loader, [
-            'cache' => 'false',
+            // 'cache' => 'false',
         ]);
-        echo $twig->render("showAcceuil.html.twig", ["url" => $_SERVER['PHP_SELF']]);
+        $url = $_SERVER['PHP_SELF'];
+        echo $twig->render("showAcceuil.html.twig", ['session' => $_SESSION, 'url' => $url, 'title' => 'marc']);
     }
 
     function afficherRubriques()
     {
         $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
         $twig = new \Twig\Environment($loader, [
-            'cache' => 'false',
+            //'cache' => 'false',
         ]);
         $ru = new MySQLRubriqueDAO();
         $tableau = $ru -> getAll();
-        echo $twig->render("vueListerRubrique.html.twig",["rubs" => "$tableau", "session" => "$_SESSION", "url" => $_SERVER['PHP_SELF']]);
+        $url = $_SERVER['PHP_SELF'];
+        echo $twig->render('vueListerRubrique.html.twig', ['rubs' => $tableau, 'url' => $url]);
     }
 
     function ajouterRubrique()
@@ -75,8 +77,12 @@
         }
         else
         {
-            $ru = new VueAjouterRubrique();
-            $ru -> show();
+            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+            $twig = new \Twig\Environment($loader, [
+
+            ]);
+            $url = $_SERVER['PHP_SELF'];
+            echo $twig -> render('vueAjouterRubrique.html.twig', ['url' => $url]);
         }
     }
 
@@ -133,7 +139,13 @@
             }
         }else
         {
-            $u = new VueCreerUtilisateur();
-            $u -> show();
+            // $u = new VueCreerUtilisateur();
+            // $u -> show();
+            $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+            $twig = new \Twig\Environment($loader, [
+
+            ]);
+            $url = $_SERVER['PHP_SELF'];
+            echo $twig -> render('vueCreerUtilisateur.html.twig', ['url' => $url]);
         }
     }

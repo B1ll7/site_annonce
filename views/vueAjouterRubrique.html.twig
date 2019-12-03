@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <form action='{{ url }}' method='POST'>
+        <p><label for='rubrique'>Rubrique</label><input type='text' name='rubrique' id='rubrique' class='rubrique'/>
+        <input type='hidden' name='action' id='action' class='action' value='ajouterRubrique'/>
+        <button type='submit'>Ajouter</button><button type='button'>Reset</button>
+    </form>
+{% endblock %}
