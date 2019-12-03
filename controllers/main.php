@@ -58,10 +58,13 @@
             case 'identifierUtilisateur':
                 identifierUtilisateur();
             break;
+            default:
             case 'creerUtilisateur':
                 creerUtilisateur();
             break;
-            default:
+            case 'afficherAnnonce':
+                afficherAnnonce();
+            break;
                 echo 'ERROR 404 PAS TROUVER LA PAGE DU POST';
             break;
         }
