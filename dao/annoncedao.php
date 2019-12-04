@@ -50,7 +50,7 @@
 
         public function update(\Annonce $ru)
         {
-            $value = array($ru -> getID, $ru -> getID_EST_DEPOSEE(), $ru -> getID_APPARTIENT(), $ru -> getENTETE(), $ru -> getCORPS(), $ru -> getDATE_DEPOT(), $ru -> getDATE_VALIDITE());
+            $value = array($ru -> getID, $ru -> getID_EST_DEPOSEE_CONSULTE(), $ru -> getID_APPARTIENT(), $ru -> getENTETE(), $ru -> getCORPS(), $ru -> getDATE_DEPOT(), $ru -> getDATE_VALIDITE());
             $requete = 'CALL udpadaAnnonce(?,?,?,?,?,?,?);';
             try {
                 $this -> cnx -> beginTransaction();

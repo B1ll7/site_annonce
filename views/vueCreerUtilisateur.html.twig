@@ -1,17 +1,18 @@
 {% extends "base.html.twig" %}
 {% block content %}
-    <div class=''>
+    <div class='enregistrer'>
         <form action='{{ url }}' class='form-signin w-25' method='POST' >
-            <h2 class="h3 mb-3 font-weight-normal">Enregistrez-vous</h2>
-            <p><label for='nom' class=''>NOM : </label><input type='text'  class="form-control"  name='nom' id='nom' class='nom' required></p>
-            <p><label for='mail'>MAIL : </label><input type='text' class="form-control" name='mail' id='mail' class='mail'required></p>
-            <p><label for='mdp'>MOT DE PASSE : </label><input type='text' class="form-control" name='mdp' id='mdp' class ='mdp'required></p>
+            <p><img src="../img/login.jpg" alt="connect"></p>
+            <h2 class="h3 mb-3 font-weight-normal">S'ENREGISTRER</h2>
+            <div><label for='nom' class=''>Nom </label><input type='text'  class="form-control"  name='nom' id='nom' class='nom' required></div>
+            <div><label for='mail'>Mail </label><input type='text' class="form-control" name='mail' id='mail' class='mail'required></div>
+            <div><label for='mdp'>Mot de passe </label><input type='text' class="form-control" name='mdp' id='mdp' class ='mdp'required></div>
             <input type='hidden' name='action' id='action' class='action' value='creerUtilisateur'>
             {# <label class="checkbox">
                 <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> se souvenir
             </label> #}
             <button class="btn btn-lg btn-primary btn-block" type='submit'>S'enregisrer</button>
-            <p><a href='{{ url }}'> Retour à l'accueil</a></p>
         </form>
     </div>
+    {% include "footer.html.twig" %}
 {% endblock %}

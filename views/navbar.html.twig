@@ -1,0 +1,26 @@
+{% block navbar %}
+    {% if name == null %}
+        <div class='nav-bar'><a href='{{url}}?action=identifierUtilisateur'>
+             <figure>
+                <img src="../img/login.jpg" alt="connect">
+                <figcaption>Se connecter</figcaption>
+            </figure> 
+        </a></div>
+    {% endif %}
+    {% if name != null and droits != 'admin' %}
+        <div class='nav-bar'><a href='{{url}}?action=identifierUtilisateur'>
+             <figure>
+                <img src="../img/login.jpg" alt="connect">
+                <figcaption>Se connecter</figcaption>
+            </figure> 
+        </a></div>
+    {% endif %}
+    {% if name != null and droits != 'admin' %}
+        <div class='nav-bar'><a href='{{url}}?action=identifierUtilisateur'>
+             <figure>
+                <img src="../img/login.jpg" alt="connect">
+                <figcaption>Se connecter</figcaption>
+            </figure> 
+        </a></div>
+    {% endif %}
+{% endblock %}

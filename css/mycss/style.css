@@ -1,0 +1,118 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+.seConnecter
+{
+    /* background-color: grey; */
+    margin: 0;
+    padding: 2%;
+    /* display: flex; */
+}
+.enregistrer
+{
+    padding: 2%;
+    margin: 0;
+    text-align: center;
+}
+
+.nav-bar
+{
+    margin: 0;
+    padding: 1%;
+}
+.nav-bar figure
+{
+    
+}
+.nav-bar img
+{
+    width: 50px;
+}
+.seConnecter form
+{
+    /* float: right; */
+    background-color: antiquewhite;
+    width: 25%;
+    height: 400px;
+    padding: 1%;
+    text-align: center;
+    border-radius: 2%;
+}
+
+.enregistrer form
+{
+    background-color: #89dcf1;
+    border-radius: 2%;
+    width: 20%;
+    padding: 2%;
+}
+
+.seConnecter .enregistrer
+{
+    width: 23%;
+    text-align: center;
+    background-color: lavender;
+    margin-top: 2%;
+    padding: 1% 2%;
+}
+
+.seConnecter form img
+{
+    border-radius: 5%;
+    width: 150px;
+}
+
+.seConnecter form div 
+{
+    display: flex;
+    flex-direction: column;
+    margin: 3%;
+    text-align: left;
+    font-weight: bold;
+}
+
+.seConnecter form input
+{
+    height: 20px;
+    margin-top: 5px;
+}
+
+.seConnecter form button
+{
+    padding: 2% 5%;
+}
+
+.seConnecter .enregistrer a
+{
+    text-decoration: none;
+    color: blue;
+}
+
+.seConnecter .enregistrer a:hover
+{
+    color: burlywood;
+    text-decoration: underline;
+}
+.enregistrer form img
+{
+    border-radius: 5%;
+    width: 150px;
+}
+.enregistrer form div
+{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-weight: bold;
+}
+.enregistrer form button
+{
+    padding: 2% 5%;
+}
+.enregistrer form div input
+{
+    margin: 2% 0;
+    height: 20px;
+}

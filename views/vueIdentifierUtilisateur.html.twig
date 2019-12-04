@@ -1,24 +1,49 @@
 {% extends "base.html.twig" %}
 {% block content %}
     {% if error == null %}
-        <form action='{{ url }}' method='POST'>
-            <h2>Connectez-Vous</h2>
-            <p><label for='nom'>IDENTIFIANT  : </label><input type='text' name='nom' id='nom' class='nom' placeholder='mail ou identifiant' required></p>
-            <p><label for='pass'>MOT DE PASSE : </label><input type='password' name='pass' id='pass' class='pass' required></p>
-            <input type='hidden' name='action' id='action' class='action' value='identifierUtilisateur'>
-            <button type='submit'>Connecter</button>
+        <div class='seConnecter'>
+            <form action='{{ url }}' method='POST'>
+                <p><img src="../img/login.jpg" alt="connect"></p>
+                <h2>CONNECTEZ-VOUS</h2>
+                <div>
+                    <label for='nom'>Identifiant </label>
+                    <input type='text' name='nom' id='nom' class='nom' placeholder='mail ou Identifiant' required>
+                </div>
+                <div>
+                     <label for='pass'>Mot de passe </label>
+                     <input type='password' name='pass' id='pass' class='pass' placeholder='monMotDePAsse' required>
+                </div>
+               
+                <input type='hidden' name='action' id='action' class='action' value='identifierUtilisateur'>
+                <button type='submit'>Connecter</button>
+            </form>
+            <div class='enregistrer'>
+                <p>Je n'ai pas encore de compte, <a href='{{url}}?action=creerUtilisateur'>M'enregistrer</a></p>
+            </div>
             <p><a href='{{ url }}'> Retour à l'accueil</a></p>
-        </form>
+        </div>
     {% endif %}
     {% if error != null %}
-        <form action='{{ url }}' method='POST'>
-            <div class='alert-danger'>{{ error }}</div>
-            <h2>Connectez-Vous</h2>
-            <p><label for='identifiant'>IDENTIFIANT  : </label><input type='text' name='nom' id='nom' class='nom' placeholder='mail ou identifiant' required></p>
-            <p><label for='pass'>MOT DE PASSE : </label><input type='password' name='pass' id='pass' class='pass' required></p>
-            <input type='hidden' name='action' id='action' class='action' value='identifierUtilisateur'>
-            <button type='submit'>Connecter</button>
+        <div class='seConnecter'>
+            <form action='{{ url }}' method='POST'>
+                <p><img src="../img/login.jpg" alt="connect"></p>
+                <h2>CONNECTEZ-VOUS</h2>
+                <div>
+                    <label for='nom'>Identifiant </label>
+                    <input type='text' name='nom' id='nom' class='nom' placeholder='mail ou Identifiant' required>
+                </div>
+                <div>
+                     <label for='pass'>Mot de passe </label>
+                     <input type='password' name='pass' id='pass' class='pass' placeholder='monMotDePAsse' required>
+                </div>
+               
+                <input type='hidden' name='action' id='action' class='action' value='identifierUtilisateur'>
+                <button type='submit'>Connecter</button>
+            </form>
+            <div class='enregistrer'>
+                <p>Je n'ai pas encore de compte, <a href='{{url}}?action=creerUtilisateur'>M'enregistrer</a></p>
+            </div>
             <p><a href='{{ url }}'> Retour à l'accueil</a></p>
-        </form>
+        </div>
     {% endif %}
 {% endblock %}
