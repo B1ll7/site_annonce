@@ -1,4 +1,27 @@
 {% extends "base.html.twig" %}
 {% block content %}
-    
+    {% if name == null %}
+        {% for e in annonce %}
+            <p>{{e.ID}} | {{e.proprietaire}} | {{e.rubrique}} | {{e.ENTETE}} | {{e.CORPS}} | {{e.DATE_DEPOT}} | {{e.expire}} </p>
+        {% endfor %}
+    {% endif %}
+    {% if name != null and droits != 'admin' %}
+        {% for e in annonce %}
+            <p>{{e.ID}} | {{e.proprietaire}} | {{e.rubrique}} | {{e.ENTETE}} | {{e.CORPS}} | {{e.DATE_DEPOT}} | {{e.expire}} 
+                {% if name == e.propritaire %}
+                    | <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'>supprimerAnnonce</a>
+                {% endif %}
+            </p>
+        {% endfor %}
+        <p><a href='{{url}}?action=creerAnnonce'>ajouterAnnonce</a></p>
+    {% endif %}
+    {% if name != null and droits == 'admin' %}
+        {% for e in annonce %}
+            <p>{{e.ID}} | {{e.proprietaire}} | {{e.rubrique}} | {{e.ENTETE}} | {{e.CORPS}} | {{e.DATE_DEPOT}} | {{e.expire}}
+                | <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'>supprimerAnnonce</a>
+            </p>
+        {% endfor %}
+        <p><a href='{{url}}?action=creerAnnonce'>ajouterAnnonce</a></p>
+    {% endif %}
+    <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}

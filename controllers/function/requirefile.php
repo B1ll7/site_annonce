@@ -5,3 +5,4 @@
     require_once realpath(__DIR__.'./ajouterRubrique.php');
     require_once realpath(__DIR__.'./identifierUtilisateur.php');
     require_once realpath(__DIR__.'./creerUtilisateur.php');
+    require_once realpath(__DIR__.'./supprimerAnnonce.php');

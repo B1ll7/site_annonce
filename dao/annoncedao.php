@@ -11,7 +11,7 @@
 
         public function insert(\Annonce $a)
         {
-            $value = array($a -> getID_EST_DEPOSEE(), $a -> getID_APPARTIENT(), $a -> getENTETE(), $a -> getCORPS(), $a -> getDATE_DEPOT(), $a -> getDATE_VALIDITE());
+            $value = array($a -> getID_EST_DEPOSEE_CONSULTE(), $a -> getID_APPARTIENT(), $a -> getENTETE(), $a -> getCORPS(), $a -> getDATE_DEPOT(), $a -> getDATE_VALIDITE());
             $requete = 'CALL insert_into_annonce(?,?,?,?,?,?);';
             try {
                 $this -> cnx -> beginTransaction();
@@ -20,7 +20,7 @@
                 $id = $this-> cnx -> lastInsertId();
                 $this -> cnx -> commit();
                 return new Utilisateur($id, $a->getENTETE());
-            } catch (PDPExecption $e) {
+            } catch (\PDOException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();
@@ -29,19 +29,22 @@
 
         public function delete(\Annonce $a)
         {
-            $sql = "CALL deleteAnnonce(:value);";
-            $value = Annonce::getID();
+            $requete = "CALL deleteAnnonce(:value);";
+            $value = $a -> getID();
             try 
             {
                 $this -> cnx -> beginTransaction();
-                $res = $this -> cnx -> prepare($sql);
-                $res -> bindParam(':value', $value, PDO::PARAM_STR);
-                $rowcount = $res -> execute();
+                $stmt = $this -> cnx -> prepare($requete);
+                $stmt -> bindParam(':value', $value, PDO::PARAM_STR);
+                $rowcount = $stmt -> execute();
                 echo "{$rowcount} lignes supprimés. \n";
                 $this -> cnx -> commit();
             }catch(\PDOException $e)
             {
-                throw new \PDOException("erreur, la rubrique n'a pas pu être supprimer", (int)$e->getCode()."\n", null);
+                echo($e->getMessage()."\n");
+                echo((int)$e->getCode()."\n");
+                $this->cnx->rollback();
+                //throw new \PDOException("erreur, la rubrique n'a pas pu être supprimer", (int)$e->getCode()."\n", null);
             }
         }
 
@@ -55,8 +58,8 @@
                 $res -> execute($value);
                 $id = $this-> cnx -> lastInsertId();
                 $this -> cnx -> commit();
-                return new Utilisateur($id, $a->getENTETE());
-            } catch (PDPExecption $e) {
+                // return new Utilisateur($id, $a->getENTETE());
+            } catch (\PDOException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();
@@ -64,19 +67,19 @@
         }
 
         public function getByRubrique(\Rubrique $ru)
-        {
-            $requete = 'CALL get_by_rubrique(:value)';
+        {      
             $value = $ru -> getId();
             try {
-                $requete = 'CALL print_Rubrique();';
+                $requete = 'CALL get_by_rubrique(:value)';
                 $this -> cnx -> beginTransaction();
                 $stmt = $this -> cnx -> prepare($requete);
                 $stmt -> bindParam(':value', $value, PDO::PARAM_STR);
                 $stmt -> execute();
                 $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Annonce', [null,null,null]);
                 $data = $stmt->fetchAll();
+                //print_r($data);
                 return $data;
-            } catch (\PDPException $e) {
+            } catch (\PDOException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();
@@ -95,7 +98,7 @@
                 $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Annonce', [null,null,null]);
                 $data = $stmt->fetchAll();
                 return $data;
-            } catch (\PDPException $e) {
+            } catch (\PDOException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();
@@ -112,7 +115,7 @@
                 $rowcount = $res -> execute();
                 echo "{$rowcount} lignes supprimées";
                 $this -> cnx -> commit();
-            } catch (\PDPException $e) {
+            } catch (\PDOException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();

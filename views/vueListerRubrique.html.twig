@@ -1,7 +1,21 @@
 {% extends "base.html.twig" %}
 {% block content %}
-    {% for rub in rubs %}
-        <ul><li>{{rub.ID}} : {{rub.LIBELLE}}</li></ul>
-    {% endfor %}
+    <h2>Bonjour {{name}}</h2>
+    {% if name == null %}
+        {% for rub in rubs %}
+            <ul><li>{{rub.ID}} : {{rub.LIBELLE}}</li></ul>
+        {% endfor %}
+    {% endif %}
+    {% if name != null and droits != 'admin' %}
+        {% for rub in rubs %}
+            <ul><li>{{rub.ID}} : {{rub.LIBELLE}}</li></ul>
+        {% endfor %}
+    {% endif %}
+    {% if name != null and droits =='admin' %}
+        <h5>/!\ Vous êtes en mode superUtilisateur</h5>
+        {% for rub in rubs %}
+            <ul><li>{{rub.ID}} : {{rub.LIBELLE}}  | <a href='{{url}}?action=supprimerRubrique&id={{rub.ID}}'>supprimerRubriques</a> </li></ul>
+        {% endfor %}
+    {% endif %}
     <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}

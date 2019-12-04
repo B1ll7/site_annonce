@@ -16,7 +16,7 @@
             try {
                 $stmt = $this -> cnx -> prepare($requete);
                 $stmt -> execute($value);
-            } catch (PDPExecption $e) {
+            } catch (\PDOException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();

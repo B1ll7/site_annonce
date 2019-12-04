@@ -6,6 +6,11 @@
      */
     function ajouterRubrique()
     {
+        $name = null;
+        if(isset($_SESSION['name']))
+        {
+            $name = $_SESSION['name'];
+        }
         if(isset($_POST) && $_POST != null)
         {
             $rubrique = $_POST['rubrique'];
@@ -21,6 +26,6 @@
                 // 'cache' => false
             ]);
             $url = $_SERVER['PHP_SELF'];
-            echo $twig -> render('vueAjouterRubrique.html.twig', ['url' => $url]);
+            echo $twig -> render('vueAjouterRubrique.html.twig', ['url' => $url, 'name' => $name]);
         }
     }

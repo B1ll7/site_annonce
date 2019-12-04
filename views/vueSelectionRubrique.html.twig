@@ -3,7 +3,7 @@
     {% if name == null %}
         <form action='{{url}}' method='POST'>
             <h3>Bonjour</h3>
-            <select>
+            <select name='rub'>
                 <option>Selectionner une Rubrique</option>
                 {% for rub in rubs %}
                     <option value='{{rub.ID}}'>{{rub.LIBELLE}}</option>
@@ -30,7 +30,7 @@
         <form action='{{url}}' method='POST'>
             <h3>Bonjour {{name}}</h3>
             <h5>Vous êtes en mode superutilisateur attention aux modifications ! </h5>
-            <select>
+            <select name='rub'>
                 <option>Selectionner une Rubrique</option>
                 {% for rub in rubs %}
                     <option value='{{rub.ID}}'>{{rub.LIBELLE}}</option>

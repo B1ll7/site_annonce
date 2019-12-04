@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+{% block head %}
+    <title>Creer Annonce</title>
+{% endblock %}
+{% block content %}
+    <form method="post" action={{url}}>
+        <p><label for='entete'>Titre : </label><input type="text" id='entete' name="entete" value="" ></p>
+        <p><label for='rub'>Rubrique : </label>
+            <select id='rub' name='rub'>
+                <option> choisir rubrique </option>
+                {% for rub in rubs %}
+                    <option value='{{rub.id}}'>{{rub.LIBELLE}}</option>
+                {% endfor %}
+            </select></p>
+        <p><label for='corps'>Corps : </label><textarea id='corps' name="corps" rows="5" cols="33" ></textarea></p>
+        <p><input type="hidden" name="action" value="creerAnnonce" ></p>
+        <input type="submit" value="valider">
+    </form>
+{% endblock %}

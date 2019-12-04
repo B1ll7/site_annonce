@@ -31,10 +31,14 @@
                 ]);
                 $_SESSION['name'] = $value[0]->getNOM();
                 $_SESSION['droits'] = $value[0] -> getDroits();
+                $_SESSION['iduser'] = $value[0] -> getID();
+
                 $name = $_SESSION['name'];
                 $droits = $_SESSION['droits'];
+                 $userid = $_SESSION['iduser'];
+                //  var_dump($userid);
                 $err_message = null; 
-                echo $twig->render('showAcceuil.html.twig', ['name' => $name, 'url' => $url, 'error' => $err_message,'droits' => $droits]);
+                echo $twig->render('showAcceuil.html.twig', ['name' => $name, 'url' => $url, 'error' => $err_message,'droits' => $droits, 'id' => $userid]);
             }
             else 
             {

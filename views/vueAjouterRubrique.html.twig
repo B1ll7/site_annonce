@@ -1,6 +1,8 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
+    <h2>Bonjour {{name}}</h2>
+    <h5>/!\ Vous êtes en mode superUtilisateur</h5>
     <form action='{{ url }}' method='POST'>
         <p><label for='rubrique'>Rubrique</label><input type='text' name='rubrique' id='rubrique' class='rubrique'/>
         <input type='hidden' name='action' id='action' class='action' value='ajouterRubrique'/>

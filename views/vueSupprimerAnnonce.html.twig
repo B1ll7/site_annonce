@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <h2>Bonjour <b>{{name}}</b></p>
+    <form method="post" accept-charset="UTF-8">
+        <p>Voulez-vous vraiment supprimer cette annonce ? </p>
+        <input type='hidden' name='action' value='supprimerAnnonce' >
+        <input type='hidden' name='rub' value='{{id}}'>
+        <button type='submit'>confirmer</button>
+    </form>
+{% endblock %}

@@ -11,34 +11,34 @@
             //'cache' => 'false',
         ]);
         $url = $_SERVER['PHP_SELF'];  
-        if(isset($_POST))
+        if(isset($_POST) && $_POST != null)
         {
             $a = new MySqlAnnonceDAO();
             $name = null;
             $droits = null;
-            if(isset($_SERVER['name']))
+            if(isset($_SESSION['name']))
             {
-                $name = $_SERVER['name'];
+                $name = $_SESSION['name'];
             };
-            if(isset($_SERVER['droits']))
+            if(isset($_SESSION['droits']))
             {
-                $droits = $_SERVER['droits'];
+                $droits = $_SESSION['droits'];
             }
             $ru = new Rubrique('Rubrique');
             $ru -> setId($_POST['rub']);
             $annonce = $a -> getByRubrique($ru);
-            echo $twig->render('vueListerAnnonces.html.twig', ['annonce' => $annonce, 'url' => $url, 'name' => $name, 'droits' => $droits]);
+            echo $twig->render('vueListerAnnonce.html.twig', ['annonce' => $annonce, 'url' => $url, 'name' => $name, 'droits' => $droits]);
         }
         else{
             $name = null;
             $droits = null;
-            if(isset($_SERVER['name']))
+            if(isset($_SESSION['name']))
             {
-                $name = $_SERVER['name'];
+                $name = $_SESSION['name'];
             };
-            if(isset($_SERVER['droits']))
+            if(isset($_SESSION['droits']))
             {
-                $droits = $_SERVER['droits'];
+                $droits = $_SESSION['droits'];
             }
             $ru = new MySQLRubriqueDAO();
             $rubs = $ru -> getAll();

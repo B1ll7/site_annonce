@@ -2,17 +2,17 @@
     class Annonce
     {
         private $ID;
-        private $ID_EST_DEPOSEE;
+        private $ID_EST_DEPOSEE_CONSULTEE;
         private $ID_APPARTIENT; 
         private $ENTETE;
         private $CORPS;
         private $DATE_DEPOT;
         private $DATE_VALIDITE;
 
-        public function __construct($ID_APPARTIENT, $ENTETE, $CORPS)
+        public function __construct()
         { 
             $this -> ID = -1;
-            $this -> ID_EST_DEPOSEE;
+            $this -> ID_EST_DEPOSEE_CONSULTEE;
             $this -> ID_APPARTIENT; 
             $this -> ENTETE;
             $this -> CORPS;
@@ -32,23 +32,23 @@
         }
 
         /**
-         * Get the value of ID_EST_DEPOSEE
+         * Get the value of ID_EST_DEPOSEE_CONSULTEE
          */ 
-        public function getID_EST_DEPOSEE()
+        public function getID_EST_DEPOSEE_CONSULTE()
         {
-                return $this->ID_EST_DEPOSEE;
+                return $this->ID_EST_DEPOSEE_CONSULTEE;
         }
 
         /**
-         * Set the value of ID_EST_DEPOSEE
+         * Set the value of ID_EST_DEPOSEE_CONSULTEE
          *
          * @return  self
          */ 
-        public function setID_EST_DEPOSEE($ID_EST_DEPOSEE)
+        public function setID_EST_DEPOSEE_CONSULTE($ID_EST_DEPOSEE_CONSULTEE)
         {
-                $this->ID_EST_DEPOSEE = $ID_EST_DEPOSEE;
+                $this->ID_EST_DEPOSEE_CONSULTEE = $ID_EST_DEPOSEE_CONSULTEE;
 
-                return $this;
+                return $this->ID_EST_DEPOSEE_CONSULTEE;
         }
 
         /**
@@ -66,7 +66,7 @@
          */ 
         public function setID_APPARTIENT($ID_APPARTIENT)
         {
-                $this->ID_APPARTIENt = $ID_APPARTIENT;
+                $this->ID_APPARTIENT = $ID_APPARTIENT;
 
                 return $this;
         }
