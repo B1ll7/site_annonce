@@ -21,14 +21,71 @@ body
 {
     margin: 0;
     padding: 1%;
+    height: 40px;
+
 }
-.nav-bar figure
+
+.annonce 
 {
-    
+    background-color: lightblue;
+    margin: 2%;
+    display: flex;
+    flex-direction: row;
+    height: 220px;
+    padding: 1% 1% 1% 1%;
+}
+.ajouterAnnonce
+{
+    text-align: center;
+}
+
+.contenerRubs
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+#contenerRubs
+{
+    justify-content: space-around;
+    margin-top: 1% ;
+}
+.selectionRubrique
+{
+    background-color: grey;
+    margin: 2%;
+    display: flex;
+    width: 20%;
+    text-align: center;
+}
+
+.ajouterAnnonce a
+{
+    border-style: outset;
+    border-color: lightblue;
+    border-width: 1%;
+    padding: 1%;
+    text-decoration: none;
+}
+.ajouterAnnonce a:focus
+{
+    border-style: inset;
+    border-color: lightblue;
+    border-width: 1%;
+    padding: 1%;
 }
 .nav-bar img
 {
     width: 50px;
+}
+
+.nav-bar figure
+{
+    float: right;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 .seConnecter form
 {
@@ -58,6 +115,58 @@ body
     padding: 1% 2%;
 }
 
+.annonce img
+{
+    width: 75%;
+}
+
+.annonce-text
+{
+    width: 100%;
+    height: 200px;
+    margin: 0;
+}
+
+.annonce-text-corps
+{
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+}
+
+.annonce-text-corps h2
+{
+    margin : 0;
+}
+.annonce-text-corps p
+{
+    width: 100%;
+    position: relative;
+    top: -10%;
+}
+.annonce a 
+{
+    float: right;
+}
+.annonce-text a img
+{
+    width: 100%;
+}
+.annonce-text div
+{
+    display: flex;
+    justify-content: space-between;
+}
+.annonce-text-corps a
+{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    background-color: grey;
+    padding: 0.5%;
+    border-style: outset;
+    border-radius: 2%;
+}
 .seConnecter form img
 {
     border-radius: 5%;

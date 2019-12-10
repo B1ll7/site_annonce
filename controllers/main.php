@@ -47,7 +47,7 @@
                 echo $twig->render("showAcceuil.html.twig");
             break;
             default:
-                echo "Error";
+                echo "Error ici";
                 break;
         }
     }
@@ -130,7 +130,8 @@
             $a -> setID_APPARTIENT($rubrique);
             $a -> setENTETE($entete);
             $a -> setCORPS($corps);
-            $value = $a->getID_APPARTIENT();
+            $a -> setDATE_DEPOT(date("Ymd"));
+            $a -> setDATE_VALIDITE($_POST['date']);
 
             $a1 -> insert($a);
             echo $twig->render("showAcceuil.html.twig", ['name' => $name, 'url' => $url]);

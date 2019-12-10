@@ -1,27 +1,83 @@
 {% extends "base.html.twig" %}
 {% block content %}
+    <div class='contenerRubs' id='contenerRubs'>
+        {% for rub in rubs %}
+            <div class=''>
+                <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
+                    {{rub.LIBELLE}}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
     {% if name == null %}
         {% for e in annonce %}
-            <p>{{e.ID}} | {{e.proprietaire}} | {{e.rubrique}} | {{e.ENTETE}} | {{e.CORPS}} | {{e.DATE_DEPOT}} | {{e.expire}} </p>
+            <div class='annonce'>
+                <div class='annonce-image'>
+                    <img src='../img/login.jpg' />
+                    <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
+                </div>
+                <div class='annonce-text'>
+                    <diV class='annonce-text-corps'>
+                        <h2>{{e.ENTETE}}</h2> 
+                        <p>Description : <br>{{e.CORPS}} </p>
+                        <a href='{{url}}?action=afficherDetailsAnnonces'>Consulter l'annonce</a>
+                    </div>
+                    <div>
+                        <p>déposée le : {{e.DATE_DEPOT}}</p>
+                        <p>expire le : {{e.expire}}</p>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     {% endif %}
     {% if name != null and droits != 'admin' %}
         {% for e in annonce %}
-            <p>{{e.ID}} | {{e.proprietaire}} | {{e.rubrique}} | {{e.ENTETE}} | {{e.CORPS}} | {{e.DATE_DEPOT}} | {{e.expire}} 
-                {% if name == e.propritaire %}
-                    | <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'>supprimerAnnonce</a>
-                {% endif %}
-            </p>
+            <div class='annonce'>
+                <div class='annonce'>
+                <div class='annonce-image'>
+                    <img src='../img/login.jpg' />
+                    <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
+                </div>
+                <div  class='annonce-text'>
+                    {% if name == e.propritaire %}
+                        <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprimer annonce'></a>
+                    {% endif %}
+                    <diV class='annonce-text-corps'>
+                        <h2>{{e.ENTETE}}</h2> 
+                        <p>Description : <br>{{e.CORPS}} </p>
+                        <a href='{{url}}?action=afficherDetailsAnnonces'>Consulter l'annonce</a>
+                    </div>
+                    <div>
+                        <p>déposée le : {{e.DATE_DEPOT}}</p>
+                        <p>expire le : {{e.expire}}</p>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
         <p><a href='{{url}}?action=creerAnnonce'>ajouterAnnonce</a></p>
     {% endif %}
     {% if name != null and droits == 'admin' %}
         {% for e in annonce %}
-            <p>{{e.ID}} | {{e.proprietaire}} | {{e.rubrique}} | {{e.ENTETE}} | {{e.CORPS}} | {{e.DATE_DEPOT}} | {{e.expire}}
-                | <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'>supprimerAnnonce</a>
-            </p>
+            <div class='annonce'>
+                <div class='annonce-image'>
+                    <img src='../img/login.jpg' />
+                    <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
+                </div>
+                <div class='annonce-text'>
+                    <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprime annonce'> </a>
+                    <diV class='annonce-text-corps'>
+                        <h2>{{e.ENTETE}}</h2> 
+                        <p>Description : <br>{{e.CORPS}} </p>
+                        <a href='{{url}}?action=afficherDetailsAnnonces'>Consulter l'annonce</a>
+                    </div>
+                    <div>
+                        <p>déposée le : {{e.DATE_DEPOT}}</p>
+                        <p>epire le : {{e.expire}}</p>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        <p><a href='{{url}}?action=creerAnnonce'>ajouterAnnonce</a></p>
+        <p class='ajouterAnnonce'><a href='{{url}}?action=creerAnnonce'>ajouterAnnonce</a></p>
     {% endif %}
     <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}

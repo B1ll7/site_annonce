@@ -1,44 +1,49 @@
 {% extends "base.html.twig" %}
 {% block content %}
+    <h3>Bonjour {{name}}</h3>
+    <h2>Choisissez votre rubrique</h2>
     {% if name == null %}
-        <form action='{{url}}' method='POST'>
-            <h3>Bonjour</h3>
-            <select name='rub'>
-                <option>Selectionner une Rubrique</option>
-                {% for rub in rubs %}
-                    <option value='{{rub.ID}}'>{{rub.LIBELLE}}</option>
-                {% endfor %}
-            </select>
-            <input type='hidden' value='afficherAnnonce' name='action'>
-            <button type='submit'>Valider</button>
-        </form>
+        <div class='contenerRubs'>
+            {% for rub in rubs %}
+                <div class='selectionRubrique'>
+                    <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
+                        <figure>
+                            <img src='./../img/login.jpg'>
+                            <figcation>{{rub.LIBELLE}}</figcaption>
+                        </figure>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
     {% if name != null and droits != 'admin' %}
-        <form action='{{url}}' method='POST'>
-            <h3>Bonjour {{name}}</h3>
-            <select name='rub'>
-                <option>Selectionner une Rubrique</option>
-                {% for rub in rubs %}
-                    <option name='rub' value='{{rub.ID}}'>{{rub.LIBELLE}}</option>
-                {% endfor %}
-            </select>
-            <input type='hidden' value='afficherAnnonce' name='action'>
-            <button type='submit'>Valider</button>
-        </form>
+        <div class='contenerRubs'>
+            {% for rub in rubs %}
+                <div class='selectionRubrique'>
+                    <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
+                        <figure>
+                            <img src='./../img/login.jpg'>
+                            <figcation>{{rub.LIBELLE}}</figcaption>
+                        </figure>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
     {% if name != null and droits == 'admin' %}
-        <form action='{{url}}' method='POST'>
-            <h3>Bonjour {{name}}</h3>
-            <h5>Vous êtes en mode superutilisateur attention aux modifications ! </h5>
-            <select name='rub'>
-                <option>Selectionner une Rubrique</option>
-                {% for rub in rubs %}
-                    <option value='{{rub.ID}}'>{{rub.LIBELLE}}</option>
-                {% endfor %}
-            </select>
-            <input type='hidden' value='afficherAnnonce' name='action'>
-            <button type='submit'>Valider</button>
-        </form>
+        <h5>Vous êtes en mode superutilisateur attention aux modifications ! </h5>
+        <div class='contenerRubs'>
+            {% for rub in rubs %}
+                <div class='selectionRubrique'>
+                    <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
+                        <figure>
+                            <img src='./../img/login.jpg'>
+                            <figcation>{{rub.LIBELLE}}</figcaption>
+                        </figure>
+                    </a>
+                </div>
+            {% endfor %}
+        <div class='contenerRubs'>
     {% endif %}
     <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}

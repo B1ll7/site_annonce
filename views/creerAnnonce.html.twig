@@ -14,6 +14,8 @@
             </select></p>
         <p><label for='corps'>Corps : </label><textarea id='corps' name="corps" rows="5" cols="33" ></textarea></p>
         <p><input type="hidden" name="action" value="creerAnnonce" ></p>
+        <p>date depot : {{ "now"|date("m/d/Y") }} - date validite : <input type='date' name='date' min="2019-12-10" required></p>
         <input type="submit" value="valider">
     </form>
+    <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}
