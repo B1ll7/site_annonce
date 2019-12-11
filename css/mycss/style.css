@@ -58,6 +58,26 @@ body
     text-align: center;
 }
 
+.entete 
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1%;
+}
+
+.panneauconfi
+{
+    width: 300px;
+}
+.panneauconfi p 
+{
+    margin: 2% 1%;
+}
+.footer
+{
+    position: absolute;
+    bottom: 0;
+}
 .ajouterAnnonce a
 {
     border-style: outset;

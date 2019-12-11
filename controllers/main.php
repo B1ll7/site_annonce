@@ -42,9 +42,21 @@
             case 'creerAnnonce':
                 creerAnnonce();
             break;
+            case 'afficherDetailsAnnonces':
+                afficherDetailsAnnonces();
+            break;
+            case 'afficherDetailsAnnonces':
+                afficherDetailsAnnonces();
+            break;
+            case 'afficherSesAnnonces':
+                afficherSesAnnonces();
+            break;
+            // case 'modifierMotdePasseUilisateur':
+            //     modifierMotdePasseUilisateur();
+            // break;
             case 'logout':
                 session_destroy();
-                echo $twig->render("showAcceuil.html.twig");
+                afficherAnnonce();
             break;
             default:
                 echo "Error ici";
@@ -68,13 +80,13 @@
             case 'creerUtilisateur':
                 creerUtilisateur();
             break;
-            case 'afficherAnnonce':
-                afficherAnnonce();
-            break;
             case 'creerAnnonce':
                 creerAnnonce();
             break;
             case 'supprimerAnnonce':
+                supprimerAnnonce();
+            break;
+            case 'afficherDetailsAnnonces':
                 supprimerAnnonce();
             break;
                 echo 'ERROR 404 PAS TROUVER LA PAGE DU POST';
@@ -100,44 +112,31 @@
             $droits = $_SESSION['droits'];
         }
         $err_message = null;
-        echo $twig->render("showAcceuil.html.twig", ['name' => $name, 'url' => $url, 'error' => $err_message, 'droits' => $droits]);
+        afficherAnnonce();
+        // echo $twig->render("vueSelectionRubrique.html.twig", ['name' => $name, 'url' => $url, 'error' => $err_message, 'droits' => $droits]);
     }
 
-    function creerAnnonce()
-    {
-         /**
-         * Renvoie à la page d'accueil quand aucun lien n'a encore été cliqué
-         */
-        $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
-        $twig = new \Twig\Environment($loader, [
-            // 'cache' => 'false',
-        ]);
-        $url =$_SERVER['PHP_SELF'];
-        $name = $_SESSION['name'];
-        $id = $_SESSION['iduser'];
-        $rubrique = new MySQLRubriqueDAO();
-        $rubs = $rubrique -> getAll();
-        if(isset($_POST) and $_POST != null)
-        {
-            
-            $entete = $_POST['entete'];
-            $rubrique = $_POST['rub'];
-            $corps = $_POST['corps'];
-            $a = new Annonce();
+function modifierMotdePasseUilisateur()
+{
+    // $u = new MySqlUtilisateurDAO()
+    // $u ->
+}
 
-            $a1 = new MySqlAnnonceDAO();
-            $a -> setID_EST_DEPOSEE_CONSULTE($id);
-            $a -> setID_APPARTIENT($rubrique);
-            $a -> setENTETE($entete);
-            $a -> setCORPS($corps);
-            $a -> setDATE_DEPOT(date("Ymd"));
-            $a -> setDATE_VALIDITE($_POST['date']);
+function afficherSesAnnonces()
+{
+    /**
+     * Renvoie à la page d'accueil quand aucun lien n'a encore été cliqué
+     */
+    $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+    $twig = new \Twig\Environment($loader, [
+        // 'cache' => 'false',
+    ]);
+    $url =$_SERVER['PHP_SELF'];
+    $name = $_SESSION['name'];
+    $u = new Utilisateur();
+    $u -> setID(23);
+    $a = new MySqlAnnonceDAO();
+    $annonce = $a -> getByUtilisateur($u);
+    echo $twig->render("vueListerAnnonce.html.twig", ['name' => $name, 'url' => $url, 'annonce' => $annonce]);
 
-            $a1 -> insert($a);
-            echo $twig->render("showAcceuil.html.twig", ['name' => $name, 'url' => $url]);
-        }
-        else 
-        {
-            echo $twig -> render('creerAnnonce.html.twig', ['url' => $url, 'name' => $name, 'rubs' => $rubs]);
-        }
-    }
+}

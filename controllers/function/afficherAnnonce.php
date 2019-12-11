@@ -9,7 +9,11 @@
         $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
         $twig = new \Twig\Environment($loader, [
             //'cache' => 'false',
+            'debug' => true
         ]);
+        // $twig->addExtension(new DebugExtension());
+        $twig->addExtension(new \Twig\Extension\DebugExtension());
+        $twig->addGlobal('session', $_SESSION);
         $url = $_SERVER['PHP_SELF'];  
         if(isset($_GET['idRub']) && $_GET['idRub'] != null)
         {
@@ -29,7 +33,8 @@
             $rubs = $ru1 -> getAll();
             $ru -> setId($_GET['idRub']);
             $annonce = $a -> getByRubrique($ru);
-            echo $twig->render('vueListerAnnonce.html.twig', ['annonce' => $annonce, 'url' => $url, 'name' => $name, 'droits' => $droits, 'rubs' => $rubs]);
+            $_SESSION['idRub'] = $_GET['idRub'];
+             echo $twig->render('vueListerAnnonce.html.twig', ['annonce' => $annonce, 'url' => $url, 'name' => $name, 'droits' => $droits, 'rubs' => $rubs]);
         }
         else{
             $name = null;
@@ -44,6 +49,7 @@
             }
             $ru = new MySQLRubriqueDAO();
             $rubs = $ru -> getAll();
+            // var_dump($_SESSION);
             echo $twig->render('vueSelectionRubrique.html.twig', ['url' => $url, 'name' => $name, 'droits' => $droits, 'rubs' => $rubs]);
         }
     }

@@ -2,6 +2,7 @@
 {% block head %}
     <title>Creer Annonce</title>
 {% endblock %}
+{% include "navbar.html.twig" %}
 {% block content %}
     <form method="post" action={{url}}>
         <p><label for='entete'>Titre : </label><input type="text" id='entete' name="entete" value="" ></p>
@@ -17,5 +18,4 @@
         <p>date depot : {{ "now"|date("m/d/Y") }} - date validite : <input type='date' name='date' min="2019-12-10" required></p>
         <input type="submit" value="valider">
     </form>
-    <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}

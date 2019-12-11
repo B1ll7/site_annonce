@@ -1,9 +1,9 @@
 {% extends "base.html.twig" %}
 {% block content %}
-    <h3>Bonjour {{name}}</h3>
-    <h2>Choisissez votre rubrique</h2>
-    {% if name == null %}
-        <div class='contenerRubs'>
+{% include "navbar.html.twig" %}
+    <h3 class='text-center'>Choisissez votre rubrique</h2>
+    <div class='contenerRubs'>
+        {% if name == null %}
             {% for rub in rubs %}
                 <div class='selectionRubrique'>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
@@ -14,10 +14,8 @@
                     </a>
                 </div>
             {% endfor %}
-        </div>
-    {% endif %}
-    {% if name != null and droits != 'admin' %}
-        <div class='contenerRubs'>
+        {% endif %}
+        {% if name != null and droits != 'admin' %}
             {% for rub in rubs %}
                 <div class='selectionRubrique'>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
@@ -28,11 +26,8 @@
                     </a>
                 </div>
             {% endfor %}
-        </div>
-    {% endif %}
-    {% if name != null and droits == 'admin' %}
-        <h5>Vous êtes en mode superutilisateur attention aux modifications ! </h5>
-        <div class='contenerRubs'>
+        {% endif %}
+        {% if name != null and droits == 'admin' %}
             {% for rub in rubs %}
                 <div class='selectionRubrique'>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
@@ -43,7 +38,6 @@
                     </a>
                 </div>
             {% endfor %}
-        <div class='contenerRubs'>
-    {% endif %}
-    <p><a href='{{ url }}'> Retour à l'accueil</a></p>
+        {% endif %}
+    </div>
 {% endblock %}

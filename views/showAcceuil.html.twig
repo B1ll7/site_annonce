@@ -15,7 +15,7 @@
     {% endif %}
     {% if name  != null and error == null and droits == 'admin' %}
       <h3>Bonjour {{ name }}</h3>
-      <h5>/!\ Vous êtes en mode superUtilisateur</h5>
+      <h5>/!\ Vous êtes en mode superUtilisateur:!\</h5>
       <ul>
         <li><a href='{{ url }}?action=ajouterRubrique'>ajouterRubrique</a></li>
         <li><a href="{{ url }}?action=afficherRubriques">afficherRubriques</a></li>
@@ -30,8 +30,8 @@
     {% if name != null and droits == null %}
       <h3>Bonjour {{ name }}</h3>
         <ul>
-          {# <li><a href="{{ url }}?action=afficherSesAnnonces">afficherSesAnnonces</a></li> #}
-          {# <li><a href="{{ url }}?action=afficherDetailsAnnonces">afficherDetailsAnnonce</a></li> #}
+          <li><a href="{{ url }}?action=afficherSesAnnonces">afficherSesAnnonces</a></li>
+          <li><a href="{{ url }}?action=afficherDetailsAnnonces">afficherDetailsAnnonce</a></li>
           <li><a href='{{ url }}?action=creerAnnonce'>ajouterAnnonce</a></li>
           <li><a href='{{ url }}?action=supprimerAnnonce'>supprimerMonAnnonce</a></li>
           {# <li><a href='{{ url }}?action=modifierMonAnnonce'>modifierMonAnnonce</a></li> #}

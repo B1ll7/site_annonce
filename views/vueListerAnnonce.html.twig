@@ -1,12 +1,11 @@
 {% extends "base.html.twig" %}
-{% block content %}
+{% block content %}         
+{% include "navbar.html.twig" %}
     <div class='contenerRubs' id='contenerRubs'>
         {% for rub in rubs %}
-            <div class=''>
-                <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
-                    {{rub.LIBELLE}}
-                </a>
-            </div>
+            <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
+                {{rub.LIBELLE}}
+            </a>
         {% endfor %}
     </div>
     {% if name == null %}
@@ -20,7 +19,7 @@
                     <diV class='annonce-text-corps'>
                         <h2>{{e.ENTETE}}</h2> 
                         <p>Description : <br>{{e.CORPS}} </p>
-                        <a href='{{url}}?action=afficherDetailsAnnonces'>Consulter l'annonce</a>
+                        <a href='{{url}}?action=afficherDetailsAnnonces&idAnnonce={{e.ID}}'>Consulter l'annonce</a>
                     </div>
                     <div>
                         <p>déposée le : {{e.DATE_DEPOT}}</p>
@@ -40,12 +39,12 @@
                 </div>
                 <div  class='annonce-text'>
                     {% if name == e.propritaire %}
-                        <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprimer annonce'></a>
+                        <a href='{{url}}?action=supprimerAnnonce'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprimer annonce'></a>
                     {% endif %}
                     <diV class='annonce-text-corps'>
                         <h2>{{e.ENTETE}}</h2> 
                         <p>Description : <br>{{e.CORPS}} </p>
-                        <a href='{{url}}?action=afficherDetailsAnnonces'>Consulter l'annonce</a>
+                        <a href='{{url}}?action=afficherDetailsAnnonces&idAnnonce={{e.ID}}'>Consulter l'annonce</a>
                     </div>
                     <div>
                         <p>déposée le : {{e.DATE_DEPOT}}</p>
@@ -68,7 +67,7 @@
                     <diV class='annonce-text-corps'>
                         <h2>{{e.ENTETE}}</h2> 
                         <p>Description : <br>{{e.CORPS}} </p>
-                        <a href='{{url}}?action=afficherDetailsAnnonces'>Consulter l'annonce</a>
+                        <a href='{{url}}?action=afficherDetailsAnnonces&idAnnonce={{e.ID}}'>Consulter l'annonce</a>
                     </div>
                     <div>
                         <p>déposée le : {{e.DATE_DEPOT}}</p>
@@ -79,5 +78,4 @@
         {% endfor %}
         <p class='ajouterAnnonce'><a href='{{url}}?action=creerAnnonce'>ajouterAnnonce</a></p>
     {% endif %}
-    <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}

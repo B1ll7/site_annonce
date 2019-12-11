@@ -75,7 +75,7 @@
                 $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Rubrique');
                 $data = $stmt->fetchAll();
                 return $data;
-            } catch (\PDPException $e) {
+            } catch (\PDOException $e) {
                 echo($e->getMessage()."\n");
                 echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();
