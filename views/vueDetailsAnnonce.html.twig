@@ -1,23 +1,19 @@
 {% extends "base.html.twig" %}
 {% block content %}
-    {# {% include "navbar.html.twig" %} #}
-    <div class='entete'>
-        <h3>Bonjour {{name}}</h3>
-        {% if name != null %}
-                <p><a href='{{url}}?action=logout'>se deconnecter</a></p>
-        {% endif %} 
-    </div>    
-    <div>
-        <h2>{{annonce.ENTETE}}</h2>
-        <p><img src='./../img/login.jpg'></p>
-        <p>{{annonce.CORPS}}</p>
-        <p>{{annonce.DATE_DEPOT}}</p>
-        <p>{{annonce.expire}}</p>
-    </div>
-    {% if name == annonce.proprietaire  %}
-        <div class=''>
-            <p><a href='{{url}}?action=editerAnnonce'>Editer Annonce</a></p>
-            <p><a href='{{url}}?action=supprimerAnnonce'>supprimerAnnonce</a></p>
+    {% include "navbar.html.twig" %}
+    <div class='description'>  
+        <div>
+            <h2>{{annonce.ENTETE}}</h2>
+            <p><img src='./../img/login.jpg'></p>
+            <p>{{annonce.CORPS}}</p>
+            <p>{{annonce.DATE_DEPOT}}</p>
+            <p>{{annonce.expire}}</p>
         </div>
-    {% endif %}
+        {% if name == annonce.proprietaire  %}
+            <div class=''>
+                <p><a href='{{url}}?action=editerAnnonce'>Editer Annonce</a></p>
+                <p><a href='{{url}}?action=supprimerAnnonce'>supprimerAnnonce</a></p>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

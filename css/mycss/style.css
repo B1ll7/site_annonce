@@ -46,10 +46,14 @@ h3, h1{
     display: flex;
     flex-wrap: wrap;
     background-color: black;
+    height: 280px;
 }
+
 #contenerRubs
 {
     justify-content: space-around;
+    height: 50px;
+    display: flex-wrap;
 }
 .selectionRubrique
 {
@@ -63,8 +67,9 @@ h3, h1{
 
 .selectionRubrique:hover
 {
-    height: 220px;
-    width: 22%;
+   border-style: solid;
+   border-color: yellow;
+   border-width: 1%;
 }
 
 .entete 
@@ -92,6 +97,7 @@ h3, h1{
     padding: 1%;
     position: relative;
     bottom: 0;
+    margin: 0;
     margin-top: 5%;
 }
 .header
@@ -109,6 +115,18 @@ h3, h1{
     display: flex;
     flex-basis: auto;
     width: 100%;
+}
+
+.description 
+{
+    width: 17%;
+    border-radius: 2%;
+    padding: 1%;
+    position: relative;
+    left: 40%;
+    text-align: center;
+    height: 550px;
+    overflow: auto;
 }
 .ajouterAnnonce a
 {
@@ -172,7 +190,7 @@ h3, h1{
 
 .annonce img
 {
-    width: 75%;
+    width: 40%;
 }
 
 .annonce-text
@@ -202,6 +220,7 @@ h3, h1{
 .annonce a 
 {
     float: right;
+    width: 25%;
 }
 .espaceConnexion div
 {
@@ -239,19 +258,6 @@ h3, h1{
    margin: 0 auto;
    text-align: center;
 }
-#contenerRubs a:hover
-{
-   text-decoration: none;
-   font-weight: bold;
-   color: white;
-   background-color: rgb(77, 77, 77);
-   width: 10%;
-   height: 20px;
-   margin: 0 auto;
-   text-align: center;
-
-   /* padding: 1%; */
-}
 
 .selectionRubrique a 
 {
@@ -284,6 +290,11 @@ h3, h1{
 {
     color: yellow;
 }
+
+#contenerRubs a:hover
+{
+    background-color: gray;
+}
 .seConnecter form img
 {
     border-radius: 5%;
@@ -302,6 +313,7 @@ h3, h1{
 .seConnecter form input
 {
     height: 20px;
+    width: 180%;
     margin-top: 5px;
 }
 
