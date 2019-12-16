@@ -2,8 +2,8 @@
 {% block head %}
     <title>Creer Annonce</title>
 {% endblock %}
-{% include "navbar.html.twig" %}
 {% block content %}
+{% include "navbar.html.twig" %}
     <form method="post" action={{url}}>
         <p><label for='entete'>Titre : </label><input type="text" id='entete' name="entete" value="" ></p>
         <p><label for='rub'>Rubrique : </label>

@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 {% block content %}         
-{% include "navbar.html.twig" %}
+    {% include "navbar.html.twig" %}
     <div class='contenerRubs' id='contenerRubs'>
         {% for rub in rubs %}
             <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
@@ -32,13 +32,13 @@
     {% if name != null and droits != 'admin' %}
         {% for e in annonce %}
             <div class='annonce'>
-                <div class='annonce'>
                 <div class='annonce-image'>
                     <img src='../img/login.jpg' />
                     <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
                 </div>
                 <div  class='annonce-text'>
-                    {% if name == e.propritaire %}
+                    {% if name == e.proprietaire %}
+                        <a href='{{url}}?action=editerAnnonce'><img src='./../img/editer.png' alt='EditerAnnonce' title="Editer l'annonce"></a>
                         <a href='{{url}}?action=supprimerAnnonce'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprimer annonce'></a>
                     {% endif %}
                     <diV class='annonce-text-corps'>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         {% endfor %}
-        <p><a href='{{url}}?action=creerAnnonce'>ajouterAnnonce</a></p>
+        <p class='ajouterAnnonce'><a href='{{url}}?action=creerAnnonce'>ajouterAnnonce</a></p>
     {% endif %}
     {% if name != null and droits == 'admin' %}
         {% for e in annonce %}
@@ -63,6 +63,9 @@
                     <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
                 </div>
                 <div class='annonce-text'>
+                    {% if name == e.proprietaire %}
+                        <a href='{{url}}?action=editerAnnonce'><img src='./../img/editer.png' alt='EditerAnnonce' title="Editer l'annonce"></a>
+                    {% endif %}
                     <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprime annonce'> </a>
                     <diV class='annonce-text-corps'>
                         <h2>{{e.ENTETE}}</h2> 

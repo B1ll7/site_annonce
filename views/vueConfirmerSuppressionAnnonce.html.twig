@@ -1,0 +1,10 @@
+{% extends "base.html.twog" %}
+
+{% block content %}
+    {% include "nav-bar.html.twig" %}
+    <form action='{{url}}' method='POST'>
+      <label for=""></label>
+      <p>Voulez-vous vraiment supprimer cette annonce ?</p>
+      <div><button>confirmer</button><a href="{{url}}?action='afficherAnnonce'">Annuler</a></div>
+    </form>
+{% endblock %}

@@ -1,16 +1,14 @@
 {% extends "base.html.twig" %}
 {% block content %}
 {% include "navbar.html.twig" %}
-    <h3 class='text-center'>Choisissez votre rubrique</h2>
+    <div class='header'></div>
+    <h3>Choisissez votre rubrique : </h2>
     <div class='contenerRubs'>
         {% if name == null %}
             {% for rub in rubs %}
                 <div class='selectionRubrique'>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
-                        <figure>
-                            <img src='./../img/login.jpg'>
-                            <figcation>{{rub.LIBELLE}}</figcaption>
-                        </figure>
+                        {{rub.LIBELLE}}
                     </a>
                 </div>
             {% endfor %}
@@ -19,10 +17,7 @@
             {% for rub in rubs %}
                 <div class='selectionRubrique'>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
-                        <figure>
-                            <img src='./../img/login.jpg'>
-                            <figcation>{{rub.LIBELLE}}</figcaption>
-                        </figure>
+                        {{rub.LIBELLE}}
                     </a>
                 </div>
             {% endfor %}
@@ -31,10 +26,7 @@
             {% for rub in rubs %}
                 <div class='selectionRubrique'>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
-                        <figure>
-                            <img src='./../img/login.jpg'>
-                            <figcation>{{rub.LIBELLE}}</figcaption>
-                        </figure>
+                        {{rub.LIBELLE}}
                     </a>
                 </div>
             {% endfor %}

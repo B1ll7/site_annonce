@@ -4,7 +4,7 @@
         /**
          * Renvoie à la page d'accueil quand aucun lien n'a encore été cliqué
          */
-        $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+        $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
         $twig = new \Twig\Environment($loader, [
             // 'cache' => 'false',
         ]);
@@ -26,7 +26,7 @@
             $a -> setID_APPARTIENT($rubrique);
             $a -> setENTETE($entete);
             $a -> setCORPS($corps);
-            $a -> setDATE_DEPOT(date("Ymd"));
+            $a -> setDATE_DEPOT(date("Y-m-d"));
             $a -> setDATE_VALIDITE($_POST['date']);
 
             $a1 -> insert($a);

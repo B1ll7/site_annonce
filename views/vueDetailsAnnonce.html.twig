@@ -14,4 +14,10 @@
         <p>{{annonce.DATE_DEPOT}}</p>
         <p>{{annonce.expire}}</p>
     </div>
+    {% if name == annonce.proprietaire  %}
+        <div class=''>
+            <p><a href='{{url}}?action=editerAnnonce'>Editer Annonce</a></p>
+            <p><a href='{{url}}?action=supprimerAnnonce'>supprimerAnnonce</a></p>
+        </div>
+    {% endif %}
 {% endblock %}

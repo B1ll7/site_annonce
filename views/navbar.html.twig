@@ -1,41 +1,27 @@
 {% block navbar %}
+    <h1>MonSiteDannonce.fr</h1>
     <div class='entete'>
             <h3>Bonjour {{name}}</h3>
             {% if name != null and droits == 'admin' %}
                 <div class='entete panneauconfi'>
-                    <p><a href='{{url}}?panneauAdmin=logout'>Panneau de config</a></p>
-                    <p><a href='{{url}}?action=logout'>se deconnecter</a></p>
+                    <p><a href='{{ url }}?action='>Panneau de config</a></p>
+                    <p><a href='{{ url }}?action=logout'>se deconnecter</a></p>
                 </div>
             {% endif %}
-            {% if name != null and droits != 'admin' %}
-                    <p><a href='{{url}}?action=logout'>se deconnecter</a></p>
-            {% endif %}
-            
+ 
             {% if name == null %}
-                {% if name == null %}
-                    <div class='nav-bar'><a href='{{url}}?action=identifierUtilisateur'>
-                        <figure>
-                            <img src="../img/login.jpg" alt="connect">
-                            <figcaption>Se connecter</figcaption>
-                        </figure> 
-                    </a></div>
-                {% endif %}
-                {% if name != null and droits != 'admin' %}
-                    <div class='nav-bar'><a href='{{url}}?action=identifierUtilisateur'>
-                        <figure>
-                            <img src="../img/login.jpg" alt="connect">
-                            <figcaption>Se connecter</figcaption>
-                        </figure> 
-                    </a></div>
-                {% endif %}
-                {% if name != null and droits != 'admin' %}
-                    <div class='nav-bar'><a href='{{url}}?action=identifierUtilisateur'>
-                        <figure>
-                            <img src="../img/login.jpg" alt="connect">
-                            <figcaption>Se connecter</figcaption>
-                        </figure> 
-                    </a></div>
-                {% endif %}
-            {% endif %}  
+                <div class='nav-bar'><a href='{{url}}?action=identifierUtilisateur'>
+                    <figure>
+                        <img src="../img/login.jpg" alt="connect">
+                        <figcaption>Se connecter</figcaption>
+                    </figure> 
+                </a></div>
+            {% endif %}
+            {% if name != null and droits != 'admin' %}
+                <div class 'entete panneauconfi'>
+                    <p><a href="{{ url }}?action=afficherSesAnnonces">afficherSesAnnonces</a></p>
+                    <p><a href='{{ url }}?action=logout'>Se deconnecter</a></p>
+                </div>
+            {% endif %}
         </div> 
 {% endblock %}

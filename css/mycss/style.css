@@ -3,12 +3,15 @@ body
     margin: 0;
     padding: 0;
 }
+h3, h1{
+    text-align: center;
+}
+
 .seConnecter
 {
-    /* background-color: grey; */
+ 
     margin: 0;
-    padding: 2%;
-    /* display: flex; */
+    padding: 1%;
 }
 .enregistrer
 {
@@ -22,7 +25,6 @@ body
     margin: 0;
     padding: 1%;
     height: 40px;
-
 }
 
 .annonce 
@@ -43,26 +45,35 @@ body
 {
     display: flex;
     flex-wrap: wrap;
+    background-color: black;
 }
 #contenerRubs
 {
     justify-content: space-around;
-    margin-top: 1% ;
 }
 .selectionRubrique
 {
-    background-color: grey;
     margin: 2%;
     display: flex;
     width: 20%;
+    height: 200px;
     text-align: center;
+    background-image: url('./../../img/img.jpg');
+}
+
+.selectionRubrique:hover
+{
+    height: 220px;
+    width: 22%;
 }
 
 .entete 
 {
     display: flex;
     justify-content: space-between;
-    padding: 0 1%;
+    padding: 1% 1% 2% 1%;
+    box-shadow: 0px 10px rgb(192, 192, 192);
+    margin-bottom: 1.5%;
 }
 
 .panneauconfi
@@ -75,8 +86,29 @@ body
 }
 .footer
 {
-    position: absolute;
+    text-align: center;
+    width: 100%;
+    background-color: black ;
+    padding: 1%;
+    position: relative;
     bottom: 0;
+    margin-top: 5%;
+}
+.header
+{
+    background-image: url('../../img/background.jpg');
+    height: 300px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100%;
+}
+
+.espaceConnexion
+{
+    display: flex;
+    flex-basis: auto;
+    width: 100%;
 }
 .ajouterAnnonce a
 {
@@ -105,17 +137,18 @@ body
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 .seConnecter form
 {
     /* float: right; */
     background-color: antiquewhite;
-    width: 25%;
-    height: 400px;
+    width: 50%;
+    height: 450px;
     padding: 1%;
     text-align: center;
     border-radius: 2%;
+    position: relative;
+    left: 50%;
 }
 
 .enregistrer form
@@ -128,11 +161,13 @@ body
 
 .seConnecter .enregistrer
 {
-    width: 23%;
+    width: 47%;
     text-align: center;
     background-color: lavender;
     margin-top: 2%;
     padding: 1% 2%;
+    position: relative;
+    left: 50%;
 }
 
 .annonce img
@@ -168,6 +203,11 @@ body
 {
     float: right;
 }
+.espaceConnexion div
+{
+    width: 50%;
+    margin: 0.5%;
+}
 .annonce-text a img
 {
     width: 100%;
@@ -187,10 +227,67 @@ body
     border-style: outset;
     border-radius: 2%;
 }
+
+#contenerRubs a
+{
+   text-decoration: none;
+   font-weight: bold;
+   color: white;
+   width: 10%;
+   height: 20px;
+   padding: 1%;
+   margin: 0 auto;
+   text-align: center;
+}
+#contenerRubs a:hover
+{
+   text-decoration: none;
+   font-weight: bold;
+   color: white;
+   background-color: rgb(77, 77, 77);
+   width: 10%;
+   height: 20px;
+   margin: 0 auto;
+   text-align: center;
+
+   /* padding: 1%; */
+}
+
+.selectionRubrique a 
+{
+    position: relative;
+    top: 10%;
+    left: 15%;
+    padding: 20%;
+    text-decoration: none;
+    font-size: large;
+    font-weight: bold;
+    color:  black;
+}
+.seConnecterText
+{
+    height: 200px;
+    padding: 10% 0%;
+}
+.seConnecterText h2 
+{
+    text-align: center;
+}
+
+.footer a 
+{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.footer a:hover
+{
+    color: yellow;
+}
 .seConnecter form img
 {
     border-radius: 5%;
-    width: 150px;
+    width:50%;
 }
 
 .seConnecter form div 

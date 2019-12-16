@@ -38,7 +38,9 @@
                  $userid = $_SESSION['iduser'];
                 //  var_dump($userid);
                 $err_message = null; 
-                echo $twig->render('showAcceuil.html.twig', ['name' => $name, 'url' => $url, 'error' => $err_message,'droits' => $droits, 'id' => $userid]);
+                // echo $twig->render('vueSelectionRubrique.html.twig', ['name' => $name, 'url' => $url, 'error' => $err_message,'droits' => $droits, 'id' => $userid]);
+                afficherAnnonce();
+                
             }
             else 
             {

@@ -51,6 +51,9 @@
             case 'afficherSesAnnonces':
                 afficherSesAnnonces();
             break;
+            case 'panneauDeConfig':
+                afficherSesAnnonces();
+            break;
             // case 'modifierMotdePasseUilisateur':
             //     modifierMotdePasseUilisateur();
             // break;
@@ -134,9 +137,11 @@ function afficherSesAnnonces()
     $url =$_SERVER['PHP_SELF'];
     $name = $_SESSION['name'];
     $u = new Utilisateur();
-    $u -> setID(23);
+    $u -> setID($_SESSION['iduser']);
     $a = new MySqlAnnonceDAO();
     $annonce = $a -> getByUtilisateur($u);
-    echo $twig->render("vueListerAnnonce.html.twig", ['name' => $name, 'url' => $url, 'annonce' => $annonce]);
+    $ru = new MySQLRubriqueDAO();
+    $rubs = $ru -> getAll();
+    echo $twig->render("vueListerAnnonce.html.twig", ['name' => $name, 'url' => $url, 'annonce' => $annonce, 'rubs' => $rubs]);
 
 }
