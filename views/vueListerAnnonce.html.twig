@@ -37,10 +37,12 @@
                     <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
                 </div>
                 <div  class='annonce-text'>
-                    {% if name == e.proprietaire %}
-                        <a href='{{url}}?action=editerAnnonce'><img src='./../img/editer.png' alt='EditerAnnonce' title="Editer l'annonce"></a>
-                        <a href='{{url}}?action=supprimerAnnonce'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprimer annonce'></a>
-                    {% endif %}
+                    <div class='iconuser'>
+                        {% if name == e.proprietaire %}
+                            <a href='{{url}}?action=editerAnnonce'><img src='./../img/editer.png' alt='EditerAnnonce' title="Editer l'annonce"></a>
+                            <a href='{{url}}?action=supprimerAnnonce'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprimer annonce'></a>
+                        {% endif %}
+                    </div>        
                     <diV class='annonce-text-corps'>
                         <h2>{{e.ENTETE}}</h2> 
                         <p>Description : <br>{{e.CORPS}} </p>

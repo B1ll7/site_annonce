@@ -3,9 +3,8 @@
       <title>Accueil</title>
   {% endblock %}
   {% block content %}
-    {% if name  == null and error == null %}
       {% include "navbar.html.twig" %}
-      <h3>Bonjour</h3>
+    {% if name  == null and error == null %}
       <ul>
         <li><a href="{{ url }}?action=afficherRubriques">afficherRubriques</a></li>
         <li><a href="{{ url }}?action=afficherAnnonces">afficherAnnonces</a></li>
@@ -14,21 +13,18 @@
       </ul>
     {% endif %}
     {% if name  != null and error == null and droits == 'admin' %}
-      <h3>Bonjour {{ name }}</h3>
-      <h5>/!\ Vous êtes en mode superUtilisateur:!\</h5>
       <ul>
-        <li><a href='{{ url }}?action=ajouterRubrique'>ajouterRubrique</a></li>
+        {# <li><a href='{{ url }}?action=ajouterRubrique'>ajouterRubrique</a></li> #}
         <li><a href="{{ url }}?action=afficherRubriques">afficherRubriques</a></li>
         <li><a href="{{ url }}?action=afficherAnnonces">afficherAnnonces</a></li>
-        <li><a href='{{ url }}?action=creerAnnonce'>ajouterAnnonce</a></li>
-        {# <li><a href='{{ url }}?action=supprimerAnnoncePerimees'>supprimerAnnoncePerimees</a></li> #}
+        {# <li><a href='{{ url }}?action=creerAnnonce'>ajouterAnnonce</a></li> #}
+        <li><a href='{{ url }}?action=supprimerAnnoncePerimees'>supprimerAnnoncePerimees</a></li>
         {# <li><a href='{{ url }}?action=modifierMotdePasseUilisateur'>modifierMotDePasseUtilisateur</a></li> #}
         <li><a href='{{ url }}?action=logout'>Se deconnecter</a></li>
       </ul>
     {% endif %}
 
     {% if name != null and droits == null %}
-      <h3>Bonjour {{ name }}</h3>
         <ul>
           <li><a href="{{ url }}?action=afficherSesAnnonces">afficherSesAnnonces</a></li>
           <li><a href="{{ url }}?action=afficherDetailsAnnonces">afficherDetailsAnnonce</a></li>

@@ -1,10 +1,11 @@
 {% block navbar %}
     <h1>MonSiteDannonce.fr</h1>
     <div class='entete'>
-            <h3>Bonjour {{name}}</h3>
+                <h3>Bonjour {{name}}</h3>
             {% if name != null and droits == 'admin' %}
+                <h5>/!\ Vous êtes en mode superUtilisateur, vos actions ont un impact ! /!\</h5>
                 <div class='entete panneauconfi'>
-                    <p><a href='{{ url }}?action='>Panneau de config</a></p>
+                    <p><a href='{{ url }}?action=panneauDeConfig'>Panneau de config</a></p>
                     <p><a href='{{ url }}?action=logout'>se deconnecter</a></p>
                 </div>
             {% endif %}

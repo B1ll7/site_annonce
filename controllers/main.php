@@ -39,6 +39,9 @@
             case 'supprimerAnnonce':
                 supprimerAnnonce();
             break;
+            case 'supprimerRubrique':
+                supprimerRubrique();
+            break;
             case 'creerAnnonce':
                 creerAnnonce();
             break;
@@ -52,14 +55,19 @@
                 afficherSesAnnonces();
             break;
             case 'panneauDeConfig':
-                afficherSesAnnonces();
+                afficherPanneauDeConfig();
+            break;
+            case 'editerAnnonce':
+                editerAnnonce();
             break;
             // case 'modifierMotdePasseUilisateur':
             //     modifierMotdePasseUilisateur();
             // break;
             case 'logout':
+                // $_SESSION = array();
                 session_destroy();
-                afficherAnnonce();
+                // afficherAnnonce();
+                header('Location:?action=afficherAnnonces');
             break;
             default:
                 echo "Error ici";
@@ -88,6 +96,9 @@
             break;
             case 'supprimerAnnonce':
                 supprimerAnnonce();
+            break;
+            case 'editerAnnonce':
+                editerAnnonce();
             break;
             case 'afficherDetailsAnnonces':
                 supprimerAnnonce();
@@ -125,23 +136,72 @@ function modifierMotdePasseUilisateur()
     // $u ->
 }
 
-function afficherSesAnnonces()
+function editerAnnonce()
 {
-    /**
-     * Renvoie à la page d'accueil quand aucun lien n'a encore été cliqué
-     */
+    $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
+        $twig = new \Twig\Environment($loader, [
+            //'cache' => 'false',
+            'debug' => true
+        ]);
+        // $twig->addExtension(new DebugExtension());
+        $twig->addExtension(new \Twig\Extension\DebugExtension());
+        $twig->addGlobal('session', $_SESSION);
+        $url = $_SERVER['PHP_SELF'];
+        
+        if($_POST['action'] != null)
+        {
+           
+        }
+        else{
+           
+
+        }
+}
+
+function afficherPanneauDeConfig()
+{
     $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
+    $twig = new \Twig\Environment($loader, [
+        //'cache' => 'false',
+        'debug' => true
+    ]);
+
+    $twig->addExtension(new \Twig\Extension\DebugExtension());
+    $twig->addGlobal('session', $_SESSION);
+    $url = $_SERVER['PHP_SELF'];
+
+    $name = null;
+    $droits = null;
+    if(isset($_SESSION['name']))
+    {
+        $name = $_SESSION['name'];
+    };
+    if(isset($_SESSION['droits']))
+    {
+        $droits = $_SESSION['droits'];
+    }
+    echo $twig->render('showacceuil.html.twig', ['url' => $url, 'name' => $name, 'droits' => $droits]);
+}
+
+function supprimerRubrique()
+{
+    $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."./views");
     $twig = new \Twig\Environment($loader, [
         // 'cache' => 'false',
     ]);
-    $url =$_SERVER['PHP_SELF'];
+    $url = $_SERVER['PHP_SELF'];
+    $annonceId = $_GET['id'];
     $name = $_SESSION['name'];
-    $u = new Utilisateur();
-    $u -> setID($_SESSION['iduser']);
-    $a = new MySqlAnnonceDAO();
-    $annonce = $a -> getByUtilisateur($u);
-    $ru = new MySQLRubriqueDAO();
-    $rubs = $ru -> getAll();
-    echo $twig->render("vueListerAnnonce.html.twig", ['name' => $name, 'url' => $url, 'annonce' => $annonce, 'rubs' => $rubs]);
+    $droits = $_SESSION['droits'];
+    $success = null;
+    if(isset($_GET['action']))
+    {
+        $ar = new MySQLRubriqueDAO();
+        $ru = new Rubrique();
+        $ru -> setID($annonceId);
+        $ar -> delete($ru);
+        $success = 'Suppression de la rubrique a bien été effectuée ! ';
+        echo $twig -> render("vueAjouterRubrique.html.twig", ['name' => $name, 'success' => $success, 'url' => $url, 'droits' => $droits ]);
+    }
 
 }

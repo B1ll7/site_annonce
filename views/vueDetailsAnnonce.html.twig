@@ -4,10 +4,12 @@
     <div class='description'>  
         <div>
             <h2>{{annonce.ENTETE}}</h2>
-            <p><img src='./../img/login.jpg'></p>
-            <p>{{annonce.CORPS}}</p>
-            <p>{{annonce.DATE_DEPOT}}</p>
-            <p>{{annonce.expire}}</p>
+            <div class='desc-img'></div>
+            <p class='description-text'>{{annonce.CORPS}}</p>
+            <div class='desc-date'>
+                <p>{{annonce.DATE_DEPOT}}</p>
+                <p>{{annonce.expire}}</p>
+            </div>
         </div>
         {% if name == annonce.proprietaire  %}
             <div class=''>

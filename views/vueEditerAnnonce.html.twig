@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block content %}
+{% include "navbar.html.twig" %}
+    <div>
+        <form action='{{url}}' method='POST'>
+            <input type='hidden' name='action' value='editerAnnonce'> 
+            <div><label for='titre'>title</label><input name='titre' id='titre' value='{{titre}}'></div>
+            <div>
+                <label for='rubrique'>rubrique</label>
+                <select name='rubrique' id='rubrique' value> 
+                    <option value='{{rubrique.ID}}'>{{rubrique.LIBELLE}}</option>
+                    {% for rub in rubs %}
+                        <option value='{{rub.ID}}'>{{rub.LIBELLE}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div><label for='desc'>Description : </label><p name='desc' id='desc'>{{descr}}</p></div>
+            <div>
+                <button type='submit'>Confirmer</button>
+                <a href='{{url}}?action='>Annuler</a>
+            </div>
+        </form>
+    </div>   
+{% endblock %}

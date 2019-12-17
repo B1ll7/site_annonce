@@ -14,7 +14,8 @@
         // $twig->addExtension(new DebugExtension());
         $twig->addExtension(new \Twig\Extension\DebugExtension());
         $twig->addGlobal('session', $_SESSION);
-        $url = $_SERVER['PHP_SELF'];  
+        $url = $_SERVER['PHP_SELF'];
+        
         if(isset($_GET['idRub']) && $_GET['idRub'] != null)
         {
             $a = new MySqlAnnonceDAO();
@@ -51,5 +52,6 @@
             $rubs = $ru -> getAll();
             // var_dump($_SESSION);
             echo $twig->render('vueSelectionRubrique.html.twig', ['url' => $url, 'name' => $name, 'droits' => $droits, 'rubs' => $rubs]);
+
         }
     }

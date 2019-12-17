@@ -1,48 +1,20 @@
 {% extends "base.html.twig" %}
 {% block content %}
-    <h2>Bonjour {{name}}</h2>
-    {% if name == null %}
-        <div class='contenerRubs'>
-            {% for rub in rubs %}
-                <div class='selectionRubrique'>
-                    <p>
-                        <figure>
-                            <img src='./../img/login.jpg'>
-                            <figcation>{{rub.LIBELLE}}</figcaption>
-                        </figure>
-                    </p>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-    {% if name != null and droits != 'admin' %}
-        <div class='contenerRubs'>
-            {% for rub in rubs %}
-                <div class='selectionRubrique'>
-                    <p>
-                        <figure>
-                            <img src='./../img/login.jpg'>
-                            <figcation>{{rub.LIBELLE}}</figcaption>
-                        </figure>
-                    </p>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+    {% include "navbar.html.twig" %}
     {% if name != null and droits =='admin' %}
-        <h5>/!\ Vous êtes en mode superUtilisateur</h5>
-        <div class='contenerRubs'>
+        <div class=''>
             {% for rub in rubs %}
-                <div class='selectionRubrique'>
+                <div class=''>
                     <p>
-                        <figure>
-                            <img src='./../img/login.jpg'>
-                            <figcation>{{rub.LIBELLE}}</figcaption>
-                        </figure>
+                        {{rub.LIBELLE}}
                     </p>
-                    <a href='{{url}}?action=supprimerRubrique&id={{rub.ID}}'><img src='./../img/deleteIcon.svg' title="supprimer la rubrique '{{rub.LIBELLE}}'" alt='supprimerRubrique'></a>
-                </div>
+                    <div>
+                    </div>
+                        <a href='{{url}}?action=supprimerRubrique&id={{rub.ID}}'><img src='./../img/editer.png' title="editer la rubrique '{{rub.LIBELLE}}'" alt='supprimerRubrique'></a>
+                        <a href='{{url}}?action=supprimerRubrique&id={{rub.ID}}'><img src='./../img/deleteIcon.svg' title="supprimer la rubrique '{{rub.LIBELLE}}'" alt='supprimerRubrique'></a>
+                    </div>
             {% endfor %}
         </div>
+        <a href='{{ url }}?action=ajouterRubrique'>ajouterRubrique</a>
     {% endif %}
 {% endblock %}

@@ -119,13 +119,49 @@ h3, h1{
 
 .description 
 {
-    width: 17%;
+    width: 50%;
     border-radius: 2%;
     padding: 1%;
     position: relative;
-    left: 40%;
+    left: 25%;
     text-align: center;
     height: 550px;
+    overflow: auto;
+    border-style: solid;
+    border-color: black;
+    border-width: 1%;
+}
+.description-entete
+{
+    display: flex;
+    background-color: grey;
+}
+
+.desc-img
+{
+    background-image: url('./../../img/article.png');
+    height: 150px;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+}
+
+
+.description-entete h2{
+    position: relative;
+    left: 30%;
+}
+.desc-date 
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.description-text
+{
+    height: 250px;
     overflow: auto;
 }
 .ajouterAnnonce a
@@ -229,7 +265,21 @@ h3, h1{
 }
 .annonce-text a img
 {
-    width: 100%;
+    
+}
+.iconuser
+{
+    float: right;
+    width: 5%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    right: 1%;
+}
+.iconuser a img{
+    width: 200%;
+    margin: 0;
 }
 .annonce-text div
 {

@@ -1,11 +1,15 @@
 {% extends "base.html.twig" %}
 {% block content %}
-    <h2>Bonjour {{name}}</h2>
-    <h5>/!\ Vous êtes en mode superUtilisateur</h5>
+    {% include "navbar.html.twig" %}
+    {% if erreur != null %}
+        {{erreur}}
+    {% endif %}
+    {% if success != null %}
+        {{success}}
+    {% endif %}
     <form action='{{ url }}' method='POST'>
         <p><label for='rubrique'>Rubrique</label><input type='text' name='rubrique' id='rubrique' class='rubrique'/>
         <input type='hidden' name='action' id='action' class='action' value='ajouterRubrique'/>
         <button type='submit'>Ajouter</button><button type='button'>Reset</button>
     </form>
-    <p><a href='{{ url }}'> Retour à l'accueil</a></p>
 {% endblock %}

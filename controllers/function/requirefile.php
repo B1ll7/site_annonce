@@ -8,3 +8,4 @@
     require_once realpath(__DIR__.'./supprimerAnnonce.php');
     require_once realpath(__DIR__.'./creerAnnonce.php');
     require_once realpath(__DIR__.'./afficherDetailsAnnonce.php');
+    require_once realpath(__DIR__.'./afficherMesAnnonces.php');

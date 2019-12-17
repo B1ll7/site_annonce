@@ -41,7 +41,6 @@
                 $res = $this -> cnx -> prepare($sql);
                 $res -> bindParam(':value', $value, PDO::PARAM_STR);
                 $rowcount = $res -> execute();
-                echo "{$rowcount} lignes supprimés. \n";
                 $this -> cnx -> commit();
             }catch(\PDOException $e)
             {
