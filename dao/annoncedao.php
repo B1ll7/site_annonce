@@ -21,8 +21,7 @@
                 $this -> cnx -> commit();
                 return new Utilisateur($id, $a->getENTETE());
             } catch (\PDOException $e) {
-                echo($e->getMessage()."\n");
-                echo((int)$e->getCode()."\n");
+                throw new \PDOException("impossible d'ajouter cet utilisateur", $e->getCode()."\n", null);
                 $this->cnx->rollback();
             }
         }
@@ -41,10 +40,8 @@
                 $this -> cnx -> commit();
             }catch(\PDOException $e)
             {
-                echo($e->getMessage()."\n");
-                echo((int)$e->getCode()."\n");
+                throw new \PDOException("l'annonce n'a pas pu estre supprimée", $e->getCode()."\n", null);
                 $this->cnx->rollback();
-                //throw new \PDOException("erreur, la rubrique n'a pas pu être supprimer", (int)$e->getCode()."\n", null);
             }
         }
 
@@ -60,8 +57,7 @@
                 $this -> cnx -> commit();
                 // return new Utilisateur($id, $a->getENTETE());
             } catch (\PDOException $e) {
-                echo($e->getMessage()."\n");
-                echo((int)$e->getCode()."\n");
+                throw new \PDOException("la mise a jour n'a pas pu être executée", $e->getCode()."\n", null);
                 $this->cnx->rollback();
             }
         }
@@ -77,11 +73,9 @@
                 $stmt -> execute();
                 $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Annonce', [null,null,null]);
                 $data = $stmt->fetchAll();
-                //print_r($data);
                 return $data;
             } catch (\PDOException $e) {
-                echo($e->getMessage()."\n");
-                echo((int)$e->getCode()."\n");
+                throw new \PDOException("nous n'avons pas pu recuperer les annonces en fonction de l'utilisateur", $e->getCode()."\n", null);
                 $this->cnx->rollback();
             }
         }
@@ -116,8 +110,7 @@
                 echo "{$rowcount} lignes supprimées";
                 $this -> cnx -> commit();
             } catch (\PDOException $e) {
-                echo($e->getMessage()."\n");
-                echo((int)$e->getCode()."\n");
+                throw new \PDOException("impossible de supprimer les annonces périmées", $e->getCode()."\n", null);
                 $this->cnx->rollback();
             }
         }

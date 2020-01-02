@@ -3,6 +3,9 @@
     {% include "navbar.html.twig" %}
     {% if name != null and droits =='admin' %}
         <div class=''>
+            {% if success != null %}
+                <div> {{success}} </div>
+            {% endif %}
             {% for rub in rubs %}
                 <div class=''>
                     <p>

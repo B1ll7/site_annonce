@@ -4,9 +4,6 @@
     {% if erreur != null %}
         {{erreur}}
     {% endif %}
-    {% if success != null %}
-        {{success}}
-    {% endif %}
     <form action='{{ url }}' method='POST'>
         <p><label for='rubrique'>Rubrique</label><input type='text' name='rubrique' id='rubrique' class='rubrique'/>
         <input type='hidden' name='action' id='action' class='action' value='ajouterRubrique'/>

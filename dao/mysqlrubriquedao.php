@@ -24,10 +24,7 @@
                 $res -> execute();
                 $this -> cnx -> commit();
             } catch (\PDOException $e) {
-                echo "la rubrique n'a pas pu être rentrée \n";
-                //throw new \PDOException("la rubrique n'a pas pu être rentrée \n", (int)$e->getCode()."\n", null);
-                echo($e->getMessage()."\n");
-                echo((int)$e->getCode()."\n");
+                throw new \PDOException("la rubrique n'a pas pu être rentrée", (int)$e->getCode()."\n", null);
                 $this->cnx->rollback();
             }
         }
@@ -42,9 +39,12 @@
                 $res -> bindParam(':value', $value, PDO::PARAM_STR);
                 $rowcount = $res -> execute();
                 $this -> cnx -> commit();
+                return $rowcount;
             }catch(\PDOException $e)
             {
                 throw new \PDOException("erreur, la rubrique n'a pas pu être supprimer", (int)$e->getCode()."\n", null);
+                $this->cnx->rollback();
+                
             }
         }
         public function update(Rubrique $r)
@@ -64,6 +64,7 @@
             }catch(\PDOException $e)
             {
                 throw new \PDOException("erreur, la rubrique n'a pas pu être supprimer", (int)$e->getCode()."\n", null);
+                $this->cnx->rollback();
             }
         }
         public function getAll()
@@ -75,8 +76,7 @@
                 $data = $stmt->fetchAll();
                 return $data;
             } catch (\PDOException $e) {
-                echo($e->getMessage()."\n");
-                echo((int)$e->getCode()."\n");
+                throw new \PDOException("Nous n'avons pas pu recuperer la liste des rubriques", (int)$e->getCode()."\n", null);
                 $this->cnx->rollback();
             }
 

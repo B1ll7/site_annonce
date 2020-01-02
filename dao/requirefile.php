@@ -1,6 +1,5 @@
 <?php
     require realpath(__DIR__."./connexion.php");
-    require realpath(__DIR__.'./mysqlDAO.php');
     require realpath(__DIR__.'./mysqlrubriquedao.php');
     require realpath(__DIR__.'./mysqlutilisateurdao.php');
     require realpath(__DIR__.'./annoncedao.php');

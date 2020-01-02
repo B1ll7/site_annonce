@@ -60,9 +60,9 @@
             case 'editerAnnonce':
                 editerAnnonce();
             break;
-            // case 'modifierMotdePasseUilisateur':
-            //     modifierMotdePasseUilisateur();
-            // break;
+            case 'modifierMotdePasseUilisateur':
+                modifierMotdePasseUilisateur();
+            break;
             case 'logout':
                 // $_SESSION = array();
                 session_destroy();
@@ -200,8 +200,8 @@ function supprimerRubrique()
         $ru = new Rubrique();
         $ru -> setID($annonceId);
         $ar -> delete($ru);
+        $tableau = $ar -> getAll();
         $success = 'Suppression de la rubrique a bien été effectuée ! ';
-        echo $twig -> render("vueAjouterRubrique.html.twig", ['name' => $name, 'success' => $success, 'url' => $url, 'droits' => $droits ]);
+        echo $twig->render('vueListerRubrique.html.twig', ['rubs' => $tableau, 'url' => $url, 'name' => $name, 'droits' => $droits,'success' => $success]);
     }
-
 }

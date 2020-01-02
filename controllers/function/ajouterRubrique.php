@@ -24,14 +24,25 @@
             if($ru -> getLibelle() != null)
             {
                 $r -> insert($ru);
+                $success = 'La rurbique a bien été rajoutée';
+                if(isset($_SESSION['name']))
+                {
+                    $name = $_SESSION['name'];
+                }
+                if(isset($_SESSION['droits']))
+                {
+                    $droits = $_SESSION['droits'];
+                }
+                $ru = new MySQLRubriqueDAO();
+                $tableau = $ru -> getAll();
+                $url = $_SERVER['PHP_SELF'];
+                echo $twig->render('vueListerRubrique.html.twig', ['rubs' => $tableau, 'url' => $url, 'name' => $name, 'droits' => $droits,'success' => $success]);
             }
             else 
             {
                 $err = 'Veuillez remplir le champs de libelle rubrique s\'il vous plait';
+                echo $twig -> render('vueAjouterRubrique.html.twig', ['url' => $url, 'name' => $name, 'erreur' => $err]);
             }
-            // ajouterRubrique($err);
-            $err_message= $err;
-            echo $twig -> render('vueAjouterRubrique.html.twig', ['url' => $url, 'name' => $name, 'erreur' => $err_message]);
         }
         else
         {
