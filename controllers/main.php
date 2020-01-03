@@ -64,9 +64,7 @@
                 modifierMotdePasseUilisateur();
             break;
             case 'logout':
-                // $_SESSION = array();
                 session_destroy();
-                // afficherAnnonce();
                 header('Location:?action=afficherAnnonces');
             break;
             default:
@@ -101,7 +99,7 @@
                 editerAnnonce();
             break;
             case 'afficherDetailsAnnonces':
-                supprimerAnnonce();
+                // supprimerAnnonce();
             break;
                 echo 'ERROR 404 PAS TROUVER LA PAGE DU POST';
             break;

@@ -75,7 +75,9 @@
                 $data = $stmt->fetchAll();
                 return $data;
             } catch (\PDOException $e) {
-                throw new \PDOException("nous n'avons pas pu recuperer les annonces en fonction de l'utilisateur", $e->getCode()."\n", null);
+                // throw new \PDOException("nous n'avons pas pu recuperer les annonces en fonction de la rubrique", $e->getCode()."\n",null);
+                echo($e->getMessage()."\n");
+                echo((int)$e->getCode()."\n");
                 $this->cnx->rollback();
             }
         }
@@ -98,6 +100,24 @@
                 $this->cnx->rollback();
             }
 
+        }
+        public function getById(\Annonce $a)
+        {
+            $requete = 'CALL get_by_Id(:value)';
+            $value = $a -> getID();
+            try {
+                $this -> cnx -> beginTransaction();
+                $stmt = $this -> cnx -> prepare($requete);
+                $stmt -> bindParam(':value', $value, PDO::PARAM_STR);
+                $stmt -> execute();
+                $stmt -> setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Annonce', [null,null,null]);
+                $data = $stmt->fetchAll();
+                return $data;
+            } catch (\PDOException $e) {
+                echo($e->getMessage()."\n");
+                echo((int)$e->getCode()."\n");
+                $this->cnx->rollback();
+            }
         }
 
         public function deletePerimees()

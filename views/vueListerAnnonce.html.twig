@@ -12,7 +12,7 @@
         {% for e in annonce %}
             <div class='annonce'>
                 <div class='annonce-image'>
-                    <img src='../img/article.png' />
+                    <img src='../assets/img/article.png' />
                     <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
                 </div>
                 <div class='annonce-text'>
@@ -33,14 +33,14 @@
         {% for e in annonce %}
             <div class='annonce'>
                 <div class='annonce-image'>
-                    <img src='../img/article.png' />
+                    <img src='../assets/img/article.png' />
                     <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
                 </div>
                 <div  class='annonce-text'>
                     <div class='iconuser'>
                         {% if name == e.proprietaire %}
-                            <a href='{{url}}?action=editerAnnonce'><img src='./../img/editer.png' alt='EditerAnnonce' title="Editer l'annonce"></a>
-                            <a href='{{url}}?action=supprimerAnnonce'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprimer annonce'></a>
+                            <a href='{{url}}?action=editerAnnonce'><img src='./../assets/img/editer.png' alt='EditerAnnonce' title="Editer l'annonce"></a>
+                            <a href='{{url}}?action=supprimerAnnonce'><img src='./../assets/img/deleteIcon.svg' alt='supprimerAnnonce' title='supprimer annonce'></a>
                         {% endif %}
                     </div>        
                     <diV class='annonce-text-corps'>
@@ -61,12 +61,12 @@
         {% for e in annonce %}
             <div class='annonce'>
                 <div class='annonce-image'>
-                    <img src='../img/article.png' />
+                    <img src='../assets/img/article.png' />
                     <p>Déposée Par : <b>{{e.proprietaire}}</b> </p>
                 </div>
                 <div class='annonce-text'>
                     {% if name == e.proprietaire %}
-                        <a href='{{url}}?action=editerAnnonce'><img src='./../img/editer.png' alt='EditerAnnonce' title="Editer l'annonce"></a>
+                        <a href='{{url}}?action=editerAnnonce'><img src='./../assets/img/editer.png' alt='EditerAnnonce' title="Editer l'annonce"></a>
                     {% endif %}
                     <a href='{{url}}?action=supprimerAnnonce&id={{e.ID}}'><img src='./../img/deleteIcon.svg' alt='supprimerAnnonce' title='supprime annonce'> </a>
                     <diV class='annonce-text-corps'>
