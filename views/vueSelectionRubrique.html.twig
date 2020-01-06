@@ -10,17 +10,15 @@
                         {# <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
                             {{rub.LIBELLE}}
                         </a> #}
-                        <select>
-                                    <option>select rubs</option>
-
-                            {% for rub in rubs %}
-                                
-                                    <option value='{{rub.ID}}'>{{rub.LIBELLE}} </option>
+                        <select onchange='this.form.submit'>
+                            <option>select rubs</option>
+                            {% for rub in rubs %}                             
+                                <option value='{{rub.ID}}'>{{rub.LIBELLE}} </option>
                             {% endfor %}
-                            </select>
+                        </select>
                     </div>
                     <div>
-                    
+                        <p id='annonce_selected'></p>
                     </div>
                 </div>
         {% endif %}
