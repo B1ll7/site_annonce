@@ -10,7 +10,7 @@
                         {# <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
                             {{rub.LIBELLE}}
                         </a> #}
-                        <select id='mySelect' onchange='functionAnnonce()'>
+                        <select id='mySelect' onchange='functionAnnonce(this.value)'>
                             <option>select rubs</option>
                             {% for rub in rubs %}                             
                                 <option value='{{rub.ID}}'>{{rub.LIBELLE}} </option>

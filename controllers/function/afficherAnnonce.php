@@ -26,7 +26,6 @@
         });
         $twig->addFunction($function);
         $url = $_SERVER['PHP_SELF'];
-        
         if(isset($_GET['idRub']) && $_GET['idRub'] != null)
         {
             $a = new MySqlAnnonceDAO();
@@ -46,7 +45,7 @@
             $ru -> setId($_GET['idRub']);
             $annonce = $a -> getByRubrique($ru);
             $_SESSION['idRub'] = $_GET['idRub'];
-             echo $twig->render('vueListerAnnonce.html.twig', ['annonce' => $annonce, 'url' => $url, 'name' => $name, 'droits' => $droits, 'rubs' => $rubs]);
+            echo $twig->render('vueListerAnnonce.html.twig', ['annonce' => $annonce, 'url' => $url, 'name' => $name, 'droits' => $droits, 'rubs' => $rubs]);
         }
         else{
             $name = null;

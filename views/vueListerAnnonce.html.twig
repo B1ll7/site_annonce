@@ -1,13 +1,4 @@
-{% extends "base.html.twig" %}
 {% block content %}         
-    {% include "navbar.html.twig" %}
-    <div class='contenerRubs' id='contenerRubs'>
-        {% for rub in rubs %}
-            <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
-                {{rub.LIBELLE}}
-            </a>
-        {% endfor %}
-    </div>
     {% if name == null %}
         {% for e in annonce %}
             <div class='annonce'>
