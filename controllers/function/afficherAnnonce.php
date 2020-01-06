@@ -14,6 +14,17 @@
         // $twig->addExtension(new DebugExtension());
         $twig->addExtension(new \Twig\Extension\DebugExtension());
         $twig->addGlobal('session', $_SESSION);
+        $function = new Twig\TwigFunction('returnRoot', function ($filepath){
+            $path = getcwd();
+            $neo = explode('annonce',$path);
+            $returnRoot = count(explode('\\',$neo[1]));
+            $returnDot = '';
+            for ($x=0;$x<$returnRoot-1;$x++){
+                $returnDot .= '../';
+            }
+            return $returnDot.$filepath;
+        });
+        $twig->addFunction($function);
         $url = $_SERVER['PHP_SELF'];
         
         if(isset($_GET['idRub']) && $_GET['idRub'] != null)

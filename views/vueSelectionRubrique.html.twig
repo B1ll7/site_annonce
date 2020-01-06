@@ -10,7 +10,7 @@
                         {# <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
                             {{rub.LIBELLE}}
                         </a> #}
-                        <select onchange='this.form.submit'>
+                        <select id='mySelect' onchange='functionAnnonce()'>
                             <option>select rubs</option>
                             {% for rub in rubs %}                             
                                 <option value='{{rub.ID}}'>{{rub.LIBELLE}} </option>
@@ -18,7 +18,11 @@
                         </select>
                     </div>
                     <div>
-                        <p id='annonce_selected'></p>
+                        <table>
+                            <tr><th>Auteur</th><th>Title</th><th>Content</th><th>date depot</th><th>expire</th></tr>
+                            <div id='annonce_selected'>
+                            </div>
+                        </table>
                     </div>
                 </div>
         {% endif %}

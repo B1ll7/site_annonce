@@ -3,6 +3,7 @@
     require realpath(__DIR__.'./function/requirefile.php'); 
     require_once '../vendor/autoload.php';
 
+
     /**
      * @session_start debute la session de l'utilisateur
      */
@@ -19,6 +20,18 @@
         $twig = new \Twig\Environment($loader, [
             // 'cache' => 'false',
         ]);
+        $function = new Twig\TwigFunction('returnRoot', function ($filepath){
+            $path = getcwd();
+            $neo = explode('annonce',$path);
+            $returnRoot = count(explode('\\',$neo[1]));
+            $returnDot = '';
+            for ($x=0;$x<$returnRoot-1;$x++){
+                $returnDot .= '../';
+            }
+            return $returnDot.$filepath;
+        });
+        $twig->addFunction($function);
+
         switch($_GET['action'])
         {
             case "afficherRubriques":
@@ -114,6 +127,17 @@
         $twig = new \Twig\Environment($loader, [
             // 'cache' => 'false',
         ]);
+        $function = new Twig\TwigFunction('returnRoot', function ($filepath){
+            $path = getcwd();
+            $neo = explode('annonce',$path);
+            $returnRoot = count(explode('\\',$neo[1]));
+            $returnDot = '';
+            for ($x=0;$x<$returnRoot-1;$x++){
+                $returnDot .= '../';
+            }
+            return $returnDot.$filepath;
+        });
+        $twig->addFunction($function);
         $url = $_SERVER['PHP_SELF'];
         $name = null;
         $droits= null;
