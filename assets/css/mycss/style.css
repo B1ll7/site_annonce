@@ -15,9 +15,8 @@ h3, h1{
 }
 .enregistrer
 {
-    padding: 2%;
     margin: 0;
-    text-align: center;
+    padding: 1%;
 }
 
 .nav-bar
@@ -209,8 +208,10 @@ h3, h1{
 {
     background-color: #89dcf1;
     border-radius: 2%;
-    width: 20%;
+    width: 50%;
     padding: 2%;
+    position: relative;
+    left: 50%;
 }
 
 .seConnecter .enregistrer
@@ -386,7 +387,7 @@ h3, h1{
 .enregistrer form img
 {
     border-radius: 5%;
-    width: 150px;
+    width: 50%;
 }
 .enregistrer form div
 {
@@ -398,6 +399,10 @@ h3, h1{
 .enregistrer form button
 {
     padding: 2% 5%;
+}
+.enregistrer form input
+{
+    width: 180%;
 }
 .enregistrer form div input
 {

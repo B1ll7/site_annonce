@@ -3,10 +3,10 @@
 {% include "navbar.html.twig" %}
     <div class='header'></div>
     <h3>Choisissez votre rubrique </h2>
-    <div class='contenerRubs'>
+    <div class=''>
         {% if name == null %}
             {% for rub in rubs %}
-                <div class='selectionRubrique'>
+                <div class=''>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
                         {{rub.LIBELLE}}
                     </a>
@@ -15,7 +15,7 @@
         {% endif %}
         {% if name != null and droits != 'admin' %}
             {% for rub in rubs %}
-                <div class='selectionRubrique'>
+                <div class=''>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
                         {{rub.LIBELLE}}
                     </a>
@@ -24,7 +24,7 @@
         {% endif %}
         {% if name != null and droits == 'admin' %}
             {% for rub in rubs %}
-                <div class='selectionRubrique'>
+                <div class=''>
                     <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
                         {{rub.LIBELLE}}
                     </a>
