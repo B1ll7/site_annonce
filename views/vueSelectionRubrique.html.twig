@@ -5,13 +5,24 @@
     <h3>Choisissez votre rubrique </h2>
     <div class=''>
         {% if name == null %}
-            {% for rub in rubs %}
-                <div class=''>
-                    <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
-                        {{rub.LIBELLE}}
-                    </a>
+                <div>
+                    <div class=''>
+                        {# <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
+                            {{rub.LIBELLE}}
+                        </a> #}
+                        <select>
+                                    <option>select rubs</option>
+
+                            {% for rub in rubs %}
+                                
+                                    <option value='{{rub.ID}}'>{{rub.LIBELLE}} </option>
+                            {% endfor %}
+                            </select>
+                    </div>
+                    <div>
+                    
+                    </div>
                 </div>
-            {% endfor %}
         {% endif %}
         {% if name != null and droits != 'admin' %}
             {% for rub in rubs %}
