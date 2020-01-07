@@ -29,6 +29,17 @@
                 $twig = new \Twig\Environment($loader, [
                     //'cache' => 'false',
                 ]);
+                $function = new Twig\TwigFunction('returnRoot', function ($filepath){
+                    $path = getcwd();
+                    $neo = explode('annonce',$path);
+                    $returnRoot = count(explode('\\',$neo[1]));
+                    $returnDot = '';
+                    for ($x=0;$x<$returnRoot-1;$x++){
+                        $returnDot .= '../';
+                    }
+                    return $returnDot.$filepath;
+                });
+                $twig->addFunction($function);
                 $_SESSION['name'] = $value[0]->getNOM();
                 $_SESSION['droits'] = $value[0] -> getDroits();
                 $_SESSION['iduser'] = $value[0] -> getID();
@@ -59,6 +70,17 @@
             $twig = new \Twig\Environment($loader, [
                 //'cache' => 'false',
             ]);
+            $function = new Twig\TwigFunction('returnRoot', function ($filepath){
+                $path = getcwd();
+                $neo = explode('annonce',$path);
+                $returnRoot = count(explode('\\',$neo[1]));
+                $returnDot = '';
+                for ($x=0;$x<$returnRoot-1;$x++){
+                    $returnDot .= '../';
+                }
+                return $returnDot.$filepath;
+            });
+            $twig->addFunction($function);
             $err_message = null; 
             echo $twig->render('vueIdentifierUtilisateur.html.twig', ['url' => $url, 'error' => $err_message]);
         }

@@ -1,5 +1,5 @@
 <?php 
-    class Utilisateur
+    class Utilisateur implements JsonSerializable
     {
         private $ID;
         private $MDP;
@@ -171,6 +171,20 @@
         public function setDROITS($DROITS)
         {
             $this -> DROITS = $DROITS;
+        }
+
+        public function jsonSerialize()
+        {
+            return[
+                'utilisateur' => [
+                    'ID' => $this -> ID,
+                    'MDP' => $this -> NOM,
+                    'PRENOM' => $this -> PRENOM,
+                    'MAIL' => $this -> MAIL,
+                    'ADRESSE' => $this -> ADRESSE,
+                    'DROITS' => $this -> DROITS
+                ]
+                ];
         }
 
     }

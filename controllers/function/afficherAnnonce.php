@@ -45,7 +45,15 @@
             $ru -> setId($_GET['idRub']);
             $annonce = $a -> getByRubrique($ru);
             $_SESSION['idRub'] = $_GET['idRub'];
-            echo $twig->render('vueListerAnnonce.html.twig', ['annonce' => $annonce, 'url' => $url, 'name' => $name, 'droits' => $droits, 'rubs' => $rubs]);
+            
+            foreach($annonce as $element)
+            {
+                $element->setID_EST_DEPOSEE_CONSULTE($element->proprietaire);
+                $element->setID_APPARTIENT($element->rubrique);
+                $element->setDATE_VALIDITE($element->expire);
+            }
+            echo json_encode($annonce, JSON_UNESCAPED_UNICODE)."\n";
+            // echo $twig->render('vueListerAnnonce.html.twig', ['annonce' => $annonce, 'url' => $url, 'name' => $name, 'droits' => $droits, 'rubs' => $rubs]);
         }
         else{
             $name = null;

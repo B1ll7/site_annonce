@@ -2,8 +2,6 @@
     require realpath(__DIR__.'./../dao/requirefile.php'); 
     require realpath(__DIR__.'./function/requirefile.php'); 
     require_once '../vendor/autoload.php';
-
-
     /**
      * @session_start debute la session de l'utilisateur
      */
@@ -156,74 +154,4 @@ function modifierMotdePasseUilisateur()
 {
     // $u = new MySqlUtilisateurDAO()
     // $u ->
-}
-
-function editerAnnonce()
-{
-    $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/../views");
-        $twig = new \Twig\Environment($loader, [
-            //'cache' => 'false',
-            'debug' => true
-        ]);
-        // $twig->addExtension(new DebugExtension());
-        $twig->addExtension(new \Twig\Extension\DebugExtension());
-        $twig->addGlobal('session', $_SESSION);
-        $url = $_SERVER['PHP_SELF'];
-        
-        if($_POST['action'] != null)
-        {
-           
-        }
-        else{
-           
-
-        }
-}
-
-function afficherPanneauDeConfig()
-{
-    $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
-    $twig = new \Twig\Environment($loader, [
-        //'cache' => 'false',
-        'debug' => true
-    ]);
-
-    $twig->addExtension(new \Twig\Extension\DebugExtension());
-    $twig->addGlobal('session', $_SESSION);
-    $url = $_SERVER['PHP_SELF'];
-
-    $name = null;
-    $droits = null;
-    if(isset($_SESSION['name']))
-    {
-        $name = $_SESSION['name'];
-    };
-    if(isset($_SESSION['droits']))
-    {
-        $droits = $_SESSION['droits'];
-    }
-    echo $twig->render('showacceuil.html.twig', ['url' => $url, 'name' => $name, 'droits' => $droits]);
-}
-
-function supprimerRubrique()
-{
-    $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."./views");
-    $twig = new \Twig\Environment($loader, [
-        // 'cache' => 'false',
-    ]);
-    $url = $_SERVER['PHP_SELF'];
-    $annonceId = $_GET['id'];
-    $name = $_SESSION['name'];
-    $droits = $_SESSION['droits'];
-    $success = null;
-    if(isset($_GET['action']))
-    {
-        $ar = new MySQLRubriqueDAO();
-        $ru = new Rubrique();
-        $ru -> setID($annonceId);
-        $ar -> delete($ru);
-        $tableau = $ar -> getAll();
-        $success = 'Suppression de la rubrique a bien été effectuée ! ';
-        echo $twig->render('vueListerRubrique.html.twig', ['rubs' => $tableau, 'url' => $url, 'name' => $name, 'droits' => $droits,'success' => $success]);
-    }
 }

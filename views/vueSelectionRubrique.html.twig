@@ -6,24 +6,14 @@
     <div class=''>
         {% if name == null %}
                 <div>
-                    <div class=''>
-                        {# <a href='{{url}}?action=afficherAnnonces&idRub={{rub.ID}}'>
-                            {{rub.LIBELLE}}
-                        </a> #}
-                        <select id='mySelect' onchange='functionAnnonce(this.value)'>
-                            <option>select rubs</option>
-                            {% for rub in rubs %}                             
-                                <option value='{{rub.ID}}'>{{rub.LIBELLE}} </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div>
-                        <table>
-                            <tr><th>Auteur</th><th>Title</th><th>Content</th><th>date depot</th><th>expire</th></tr>
-                            <div id='annonce_selected'>
-                            </div>
-                        </table>
-                    </div>
+                    <select id='mySelect' onchange='functionAnnonce(this.value)'>
+                        <option>select rubs</option>
+                        {% for rub in rubs %}                             
+                            <option value='{{rub.ID}}'>{{rub.LIBELLE}} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id='annonce_selected'>
                 </div>
         {% endif %}
         {% if name != null and droits != 'admin' %}

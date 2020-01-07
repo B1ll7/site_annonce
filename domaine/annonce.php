@@ -1,5 +1,5 @@
 <?php
-    class Annonce
+    class Annonce implements JsonSerializable
     {
         private $ID;
         private $ID_EST_DEPOSEE_CONSULTEE;
@@ -9,15 +9,15 @@
         private $DATE_DEPOT;
         private $DATE_VALIDITE;
 
-        public function __construct()
+        public function __construct($ID_EST_DEPOSEE_CONSULTEE, $ID_APPARTIENT, $DATE_VALIDITE)
         { 
             $this -> ID = -1;
-            $this -> ID_EST_DEPOSEE_CONSULTEE;
-            $this -> ID_APPARTIENT; 
+            $this -> ID_EST_DEPOSEE_CONSULTEE = $ID_EST_DEPOSEE_CONSULTEE ;
+            $this -> ID_APPARTIENT = $ID_APPARTIENT; 
             $this -> ENTETE;
             $this -> CORPS;
             $this -> DATE_DEPOT = date('l j M Y');
-            $this -> DATE_VALIDITE;
+            $this -> DATE_VALIDITE = $DATE_VALIDITE;
         }
 
         public function __toString()
@@ -153,5 +153,20 @@
                 $this->DATE_VALIDITE = $DATE_VALIDITE;
 
                 return $this;
+        }
+
+        public function jsonSerialize()
+        {
+                return[
+                        'annonce' => [
+                                'id' => $this -> ID,
+                                'proprietaire' => $this -> ID_EST_DEPOSEE_CONSULTEE,
+                                'rubrique' => $this -> ID_APPARTIENT,
+                                'entete' => $this -> ENTETE,
+                                'corps' => $this -> CORPS,
+                                'date_depot' => $this -> DATE_DEPOT,
+                                'expire' => $this -> DATE_VALIDITE
+                        ]
+                        ];
         }
     }

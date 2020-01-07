@@ -9,3 +9,6 @@
     require_once realpath(__DIR__.'./creerAnnonce.php');
     require_once realpath(__DIR__.'./afficherDetailsAnnonce.php');
     require_once realpath(__DIR__.'./afficherMesAnnonces.php');
+    require_once realpath(__DIR__.'./supprimerRubrique.php');
+    require_once realpath(__DIR__.'./afficherPanneauConfig.php');
+    require_once realpath(__DIR__.'./editerAnnonce.php');

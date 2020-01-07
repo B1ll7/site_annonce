@@ -1,5 +1,5 @@
 <?php 
-    class Rubrique 
+    class Rubrique implements JsonSerializable
     {
         /**
          * @var int $id
@@ -46,5 +46,15 @@
         public function getLibelle()
         {
             return $this -> LIBELLE;
+        }
+
+        public function jsonSerialize()
+        {
+            return[
+                'rubrique' => [
+                    'ID' => $this -> ID,
+                    'libelle' => $this -> LIBELLE
+                ]
+                ];
         }
     }

@@ -18,6 +18,17 @@
             $twig = new \Twig\Environment($loader, [
                 // 'cache' => false
             ]);
+            $function = new Twig\TwigFunction('returnRoot', function ($filepath){
+                $path = getcwd();
+                $neo = explode('annonce',$path);
+                $returnRoot = count(explode('\\',$neo[1]));
+                $returnDot = '';
+                for ($x=0;$x<$returnRoot-1;$x++){
+                    $returnDot .= '../';
+                }
+                return $returnDot.$filepath;
+            });
+            $twig->addFunction($function);
             $rubrique = $_POST['rubrique'];
             $ru = new Rubrique($rubrique);
             $r = new MySQLRubriqueDAO;
@@ -50,7 +61,17 @@
             $twig = new \Twig\Environment($loader, [
                 // 'cache' => false
             ]);
-            
+            $function = new Twig\TwigFunction('returnRoot', function ($filepath){
+                $path = getcwd();
+                $neo = explode('annonce',$path);
+                $returnRoot = count(explode('\\',$neo[1]));
+                $returnDot = '';
+                for ($x=0;$x<$returnRoot-1;$x++){
+                    $returnDot .= '../';
+                }
+                return $returnDot.$filepath;
+            });
+            $twig->addFunction($function);
             echo $twig -> render('vueAjouterRubrique.html.twig', ['url' => $url, 'name' => $name]);
         }
     }

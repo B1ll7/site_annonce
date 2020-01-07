@@ -1,15 +1,14 @@
 <?php
-    /**
-     * Affche le template risquer rubrique
-     *
-     * @return void
-     */
-    function afficherRubriques()
+    function afficherPanneauDeConfig()
     {
-        $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/../../views');
+        $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__)."/views");
         $twig = new \Twig\Environment($loader, [
             //'cache' => 'false',
+            'debug' => true
         ]);
+    
+        $twig->addExtension(new \Twig\Extension\DebugExtension());
+        $twig->addGlobal('session', $_SESSION);
         $function = new Twig\TwigFunction('returnRoot', function ($filepath){
             $path = getcwd();
             $neo = explode('annonce',$path);
@@ -21,18 +20,17 @@
             return $returnDot.$filepath;
         });
         $twig->addFunction($function);
+        $url = $_SERVER['PHP_SELF'];
+    
         $name = null;
         $droits = null;
         if(isset($_SESSION['name']))
         {
             $name = $_SESSION['name'];
-        }
+        };
         if(isset($_SESSION['droits']))
         {
             $droits = $_SESSION['droits'];
         }
-        $ru = new MySQLRubriqueDAO();
-        $tableau = $ru -> getAll();
-        $url = $_SERVER['PHP_SELF'];
-        echo $twig->render('vueListerRubrique.html.twig', ['rubs' => $tableau, 'url' => $url, 'name' => $name, 'droits' => $droits]);
+        echo $twig->render('showacceuil.html.twig', ['url' => $url, 'name' => $name, 'droits' => $droits]);
     }
